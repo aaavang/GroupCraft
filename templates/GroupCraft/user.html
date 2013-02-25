@@ -1,0 +1,7 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<TITLE>User: {{ data.username }}</TITLE>
+	{% for k, v in data.items %}
+		{{  k }} : {{ v }} <br>
+	{% endfor %}
+{% endblock %}

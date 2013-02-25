@@ -1,0 +1,26 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<TITLE>Group: {{ name }}</TITLE>
+	{% if valid %}
+	<H1>{{name}}</H1>
+    Admins: <br>
+	{% if admins %}
+		{% for name in admins %}
+			<a href="/groupcraft/user/{{ name }}"> {{ name }}</a><br>
+		{% endfor %}
+	{% endif %}
+    Members: <br>
+    {% if members %}
+        {% for name in members %}
+	        <a href="/groupcraft/user/{{ name }}"> {{ name }}</a><br>
+        {% endfor %}
+    {% endif %}
+	<br>
+
+    <a href="/groupcraft/join_group/{{ url }}">Join this Group!</a>
+	{% else %}
+		<H1>Group "{{name}}" Does Not Exist!</H1>
+		<br>
+		<a href="/groupcraft/add_group/{{ url }}">Create this Group!</a>
+	{% endif %}
+{% endblock %}

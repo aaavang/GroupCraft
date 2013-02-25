@@ -1,0 +1,21 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<h1> Custom Search on TheDailyWTF </h1>
+    <FORM id="search_form" method="post" action="/groupcraft/search/">
+        {% csrf_token %}
+        Search:
+        <INPUT type="text" size="50" name="query" value="" id="query">
+        <INPUT type="submit" name="submit" value="submit" />
+    </FORM>
+
+    {% if result_list %}
+	    Search for: {{ result_list.terms }} <br>
+	    Total # Results : {{ result_list.total }}
+        {% for result in result_list.items %}
+            <P><A HREF="{{result.url}}">{{ result.rank }}. {{result.title}} </A> <BR/>
+                {{result.snippet}}
+            </P>
+        {% endfor %}
+
+{% endif %}
+{% endblock %}

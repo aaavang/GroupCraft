@@ -1,0 +1,42 @@
+body
+{
+    background-color: #6495ED;
+    color:#FFFFFF;
+    font: 20px bold ariel,sans-serif;
+}
+
+p {
+    color:#000000;
+}
+
+div
+{
+    border-style:solid;
+    border-width:1px;
+    border-color: black;
+    padding:10px;
+    margin:10px;
+}
+
+#page_sidebar
+{
+    float:left;
+    width:20%;
+}
+
+#page_content
+{
+    float:left;
+}
+
+#page_footer
+{
+    clear:both;
+}
+
+#page_user
+{
+    float:right;
+    position:relative;
+    top: -100px;
+}

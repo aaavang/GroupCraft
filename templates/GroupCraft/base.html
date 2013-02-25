@@ -1,0 +1,79 @@
+<HTML>
+<LINK href="{{ STATIC_URL}}css/basic/zurb.css" rel="stylesheet" title="basicstyle" type="text/css" />
+<body>
+<nav class="top-bar">
+	<ul>
+		<li class="name"><h1><a href="#">GroupCraft</a></h1></li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+
+	<section>
+		<ul class="left">
+			<li><a href="#">DEBUG View Search</a></li>
+			<li><a href="/groupcraft/group/testgroup">DEBUG View Group</a></li>
+			<li><a href="/groupcraft/user/test">DEBUG View User</a></li>
+		</ul>
+
+		<ul class="right">
+			<li class="has-dropdown">
+				<a href="#">Link</a>
+
+				<ul class="dropdown">
+					<li><a href="#">Dropdown Link</a></li>
+					<li><a href="#">Dropdown Link</a></li>
+					<li><a href="#">Dropdown Link</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+</nav>
+
+<!-- End Navigation -->
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+
+<!-- Footer -->
+
+<footer class="row">
+	<div class="twelve columns"><hr />
+		<div class="row">
+
+			<div class="six columns">
+				<p>&copy; Copyright no one at all. Go to town.</p>
+			</div>
+
+			<div class="six columns">
+				<ul class="link-list right">
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+					<li><a href="#">Link 4</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</footer>
+
+<!-- End Footer -->
+
+</div>
+</div>
+
+<!-- Included JS Files -->
+<script src="{{ STATIC_URL }}js/zurb.js"></script>
+<script type="text/javascript">
+	$(window).load(function() {
+		$('#featured').orbit({ fluid: '2x1' });
+	});
+</script>
+<!-- End Footer -->
+</body>
+</HTML>
