@@ -1,0 +1,14 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<TITLE>Tag Search: {{ name }}</TITLE>
+	{% if groups %}
+		<H1>{{name}}</H1>
+		{% for group in groups %}
+				<a href="/groupcraft/group/{{ group.get_url }}"> {{ group.name }}</a><br>
+		{% endfor %}
+		<br>
+
+	{% else %}
+		<H1>Tag "{{name}}" Does Not Exist!</H1>
+	{% endif %}
+{% endblock %}

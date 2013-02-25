@@ -9,12 +9,24 @@
 
 	<section>
 		<ul class="left">
-			<li><a href="/groupcraft/search">DEBUG View Search</a></li>
-			<li><a href="/groupcraft/group/testgroup">DEBUG View Group</a></li>
-			<li><a href="/groupcraft/user/test">DEBUG View User</a></li>
 		</ul>
 
 		<ul class="right">
+			<li>
+				<script type="text/javascript">
+				function handleKeyPress(e,form){
+					var key=e.keyCode || e.which;
+					if (key==13){
+						form.submit();
+					}
+				}
+			</script>
+				<form action="/groupcraft/search/" method="post">
+					{% csrf_token %}
+				    <input type="text" name="query" value="Search..." onkeypress="handleKeyPress(event,this.form)" />
+				</form>
+
+			</li>
 			<li class="has-dropdown">
 				<a href="#">Account Actions...</a>
 
@@ -79,7 +91,10 @@
 				textHeight: 25,
 				weight: true,
 				weightSizeMin: 12,
-				weightSizeMax: 50
+				weightSizeMax: 50,
+				decel: 1,
+				initial:[.15, .1],
+				freezeActive:true
 				/* more options */
 			});
 		} catch(e) {

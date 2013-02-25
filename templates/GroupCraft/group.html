@@ -6,13 +6,19 @@
     Admins: <br>
 	{% if admins %}
 		{% for name in admins %}
-			<a href="/groupcraft/user/{{ name }}"> {{ name }}</a><br>
+			<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
 		{% endfor %}
 	{% endif %}
     Members: <br>
     {% if members %}
         {% for name in members %}
-	        <a href="/groupcraft/user/{{ name }}"> {{ name }}</a><br>
+	        <a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+        {% endfor %}
+    {% endif %}
+		Tags: <br>
+    {% if tags %}
+        {% for tag in tags %}
+            <a href="/groupcraft/tag/{{ tag.name }}">{{ tag.name }}</a><br>
         {% endfor %}
     {% endif %}
 	<br>

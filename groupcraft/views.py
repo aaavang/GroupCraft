@@ -31,7 +31,7 @@ def about(request):
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
 
-@login_required
+
 def group(request, group_name_url):
 	template = loader.get_template('GroupCraft/group.html')
 
@@ -43,6 +43,11 @@ def group(request, group_name_url):
 	if groups:
 		group = groups[0]
 		usergroups = UserGroup.objects.filter(group = group)
+		tgs = TagGroup.objects.filter(group = group)
+		tags = []
+		for tg in tgs:
+			tags.append(tg.tag)
+
 		mem_names = []
 		admin_names = []
 		for ug in usergroups:
@@ -55,7 +60,8 @@ def group(request, group_name_url):
 		                'admins':admin_names,
 		                'members':mem_names,
 		                'url':group_name_url,
-		                'valid':True}
+		                'valid':True,
+		                'tags':tags}
 	else:
 		context_dict['name'] = Group.decode_group(group_name_url)
 		context_dict['valid'] = False
@@ -94,7 +100,7 @@ def add_group(request,group_name):
 			g = form.save(commit=True)
 			# fetch the tags
 			tag_string = form.cleaned_data['tags']
-			tags = tag_string.split()
+			tags = set(tag_string.split())
 			for tag in tags:
 				# if this is an existing tag, add one to the count
 				old_tag = Tag.objects.filter(name=tag)
@@ -208,13 +214,52 @@ def user_logout(request):
     # Redirect back to index page.
     return HttpResponseRedirect('/groupcraft')
 
-@login_required
+
 def search(request):
 	context = RequestContext(request)
-	result_list = []
+	context_dict = {}
 	if request.method == 'POST':
-		query = request.POST['query'].strip()
+		query = request.POST['query'].strip().lower()
 		if query:
-			result_list = run_query(query)
+			query = query.split()
+			tags = Tag.objects.all()
+			groups = Group.objects.all()
+			users = User.objects.all()
+			tag_results = []
+			group_results = []
+			user_results = []
+			for s in query:
+				tag_results = tag_results + list(Tag.objects.filter(name = s))
+				for t in tags:
+					if s in t.name.lower():
+						tag_results.append(t)
+				for g in groups:
+					if s in g.name.lower() or s in g.description.lower():
+						group_results.append(g)
+				for u in users:
+					if s in u.username.lower():
+						user_results.append(u)
+			tag_results = set(tag_results)
+			group_results = set(group_results)
+			user_results = set(user_results)
+			context_dict['tags'] = tag_results
+			context_dict['users'] = user_results
+			context_dict['groups'] = group_results
 
-	return render_to_response('GroupCraft/search.html',{ 'result_list': result_list }, context)
+	return render_to_response('GroupCraft/search.html',context_dict, context)
+
+def tag(request,tag_name):
+	context = RequestContext(request)
+	tag = Tag.objects.filter(name = tag_name)
+	context_dict = {};
+	if tag:
+		tag = tag[0]
+		context_dict['name'] = tag.name
+		tgs = TagGroup.objects.filter(tag = tag)
+		if tgs:
+			groups = []
+			for tg in tgs:
+				groups.append(tg.group)
+			context_dict['groups'] = groups
+
+	return render_to_response('GroupCraft/tag.html',context_dict,context)
