@@ -3,25 +3,24 @@
 <body>
 <nav class="top-bar">
 	<ul>
-		<li class="name"><h1><a href="#">GroupCraft</a></h1></li>
+		<li class="name"><h1><a href="/groupcraft">GroupCraft</a></h1></li>
 		<li class="toggle-topbar"><a href="#"></a></li>
 	</ul>
 
 	<section>
 		<ul class="left">
-			<li><a href="#">DEBUG View Search</a></li>
+			<li><a href="/groupcraft/search">DEBUG View Search</a></li>
 			<li><a href="/groupcraft/group/testgroup">DEBUG View Group</a></li>
 			<li><a href="/groupcraft/user/test">DEBUG View User</a></li>
 		</ul>
 
 		<ul class="right">
 			<li class="has-dropdown">
-				<a href="#">Link</a>
+				<a href="#">Account Actions...</a>
 
 				<ul class="dropdown">
-					<li><a href="#">Dropdown Link</a></li>
-					<li><a href="#">Dropdown Link</a></li>
-					<li><a href="#">Dropdown Link</a></li>
+					<li><a href="/groupcraft/login">Login</a></li>
+					<li><a href="/groupcraft/register">Register</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -46,15 +45,15 @@
 		<div class="row">
 
 			<div class="six columns">
-				<p>&copy; Copyright no one at all. Go to town.</p>
+				<p>&copy; GroupCraft Ltd. 2013</p>
 			</div>
 
 			<div class="six columns">
 				<ul class="link-list right">
-					<li><a href="#">Link 1</a></li>
-					<li><a href="#">Link 2</a></li>
-					<li><a href="#">Link 3</a></li>
-					<li><a href="#">Link 4</a></li>
+					<li><a href="/groupcraft">Home</a></li>
+					<li><a href="/groupcraft/about">About</a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
 				</ul>
 			</div>
 
@@ -72,6 +71,18 @@
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#featured').orbit({ fluid: '2x1' });
+
+		try {
+			TagCanvas.Start('myCanvas','tags', {
+				textFont: 'Impact,"Arial Black",sans-serif',
+				textColour: '#00f',
+				textHeight: 25
+				/* more options */
+			});
+		} catch(e) {
+			// something went wrong, hide the canvas container
+			document.getElementById('myCanvasContainer').style.display = 'none';
+		}
 	});
 </script>
 <!-- End Footer -->

@@ -14,6 +14,8 @@ def index(request):
 	template = loader.get_template('GroupCraft/new_index.html')
 
 	groups = Group.objects.all()
+	if groups.__len__() > 5:
+		groups = groups[0:5]
 	
 	context = RequestContext(request, {'groups' : groups})
 	return HttpResponse(template.render(context))

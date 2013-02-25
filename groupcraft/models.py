@@ -30,7 +30,6 @@ class Group(models.Model):
 		return encoded_name
 
 	@staticmethod
-	#TODO FIX THIS.  It is very inefficient
 	def decode_group(group_url):
 		# returns the category name given the category url portion
 		decoded_name = urllib.unquote(group_url)
@@ -59,6 +58,19 @@ class UserGroup(models.Model):
 
 	def __unicode__(self):
 		return self.user.user.username + self.group.name
+
+class Tag(models.Model):
+	name = models.CharField(max_length=32,unique=True)
+
+	def __unicode__(self):
+		return self.name
+
+class TagGroup(models.Model):
+	group = models.ForeignKey(Group)
+	tag = models.ForeignKey(Tag)
+
+	def __unicode__(self):
+		return self.group.name + self.tag.name
 
 # create a form for Category and Page
 class GroupForm(forms.ModelForm):
