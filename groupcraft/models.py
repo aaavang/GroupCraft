@@ -61,6 +61,7 @@ class UserGroup(models.Model):
 
 class Tag(models.Model):
 	name = models.CharField(max_length=32,unique=True)
+	count = models.PositiveIntegerField()
 
 	def __unicode__(self):
 		return self.name
@@ -74,8 +75,8 @@ class TagGroup(models.Model):
 
 # create a form for Category and Page
 class GroupForm(forms.ModelForm):
-	name = forms.CharField(max_length=50,
-		help_text='Please enter the name of the Group.')
+	tags = forms.CharField(max_length=50,
+		help_text='Please enter the tags of the Group.')
 
 	class Meta:
 		# associate the model, Group, with the ModelForm

@@ -16,8 +16,14 @@ def index(request):
 	groups = Group.objects.all()
 	if groups.__len__() > 5:
 		groups = groups[0:5]
+
+	tags = Tag.objects.all()
+	sorted_tags = sorted(tags, key=lambda t: t.count)
+	if sorted_tags.__len__() > 10:
+		sorted_tags = sorted_tags[0:5]
+
 	
-	context = RequestContext(request, {'groups' : groups})
+	context = RequestContext(request, {'groups' : groups,'tags':sorted_tags})
 	return HttpResponse(template.render(context))
 		
 def about(request):
@@ -86,6 +92,23 @@ def add_group(request,group_name):
 			# the form has been correctly filled in,
 			# so lets save the data to the model
 			g = form.save(commit=True)
+			# fetch the tags
+			tag_string = form.cleaned_data['tags']
+			tags = tag_string.split()
+			for tag in tags:
+				# if this is an existing tag, add one to the count
+				old_tag = Tag.objects.filter(name=tag)
+				if old_tag:
+					old_tag = old_tag[0]
+					old_tag.count += 1
+					old_tag.save()
+				else:
+					# add the new tag
+					t = Tag(name=tag,count = 1)
+					t.save()
+				# associate this tag with this group
+				tg = TagGroup(tag = t, group = g)
+				tg.save()
 			u = User.objects.get(username = request.user)
 			profile = UserProfile.objects.get(user = u)
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
