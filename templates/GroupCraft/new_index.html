@@ -12,9 +12,9 @@
 			<div class="twelve columns hide-for-small">
 
 				<div id="featured">
-					<img src="{{ STATIC_URL }}imgs/Alex.jpg" alt="slide image">
-					<img src="http://placehold.it/1200x500&text=Slide Image" alt="slide image">
-					<img src="http://placehold.it/1200x500&text=Slide Image" alt="slide image">
+					<img src="{{ STATIC_URL }}imgs/hobbit.jpg" alt="slide image">
+					<img src="{{ STATIC_URL }}imgs/minecraft.png" alt="slide image">
+					<img src="{{ STATIC_URL }}imgs/group.jpg" alt="slide image">
 				</div>
 
 			</div>
@@ -87,26 +87,20 @@
 
 					<div class="four mobile-four columns">
 
-						<h4>Blog</h4><hr/>
+						<h4>GroupCraft News</h4><hr/>
+						{% for p in posts %}
 						<div class="panel">
-							<h5><a href="#">Post Title 1</a></h5>
+							<h5><a href="#">{{ p.title }}</a></h5>
 
 							<h6 class="subheader">
-								Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Suspendisse ultrices ornare tempor...
+								{{ p.get_snippet }}...
 							</h6>
 
 							<h6><a href="#">Read More »</a></h6>
 						</div>
+						{% endfor %}
 
-						<div class="panel hide-for-small">
-							<h5><a href="#">Post Title 2 »</a></h5>
-						</div>
-
-						<div class="panel hide-for-small">
-							<h5><a href="#">Post Title 3 »</a></h5>
-						</div>
-
-						<a href="#" class="right">Go To Blog »</a>
+						<a href="/groupcraft/group/GroupCraft" class="right">Go To GroupCraft Group »</a>
 
 					</div>
 

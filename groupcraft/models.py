@@ -34,7 +34,10 @@ class Post(models.Model):
 	text = models.TextField()
 	author = models.ForeignKey(UserProfile)
 	group = models.ForeignKey(Group)
-	replyTo = models.ForeignKey('self')
+	replyTo = models.ForeignKey('self',null=True,blank=True)
+
+	def get_snippet(self):
+		return self.text[0:128]
 
 	def __unicode__(self):
 		return self.title

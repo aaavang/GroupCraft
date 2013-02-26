@@ -27,8 +27,16 @@ def index(request):
 	if tags.__len__() > 10:
 		tags = tags[0:5]
 
+	posts = []
+	gc = Group.objects.get(name = "GroupCraft")
+	if gc:
+		posts = Post.objects.filter(group = gc)
+		posts = sorted(posts, key=lambda p: p.date)
+		if posts.__len__() > 5:
+			posts = posts[0:5]
+
 	
-	context = RequestContext(request, {'groups' : groups,'tags':tags})
+	context = RequestContext(request, {'groups' : groups,'tags':tags, 'posts':posts})
 	return HttpResponse(template.render(context))
 		
 def about(request):
@@ -112,11 +120,11 @@ def add_group(request,group_name):
 			tags = set(tag_string.split())
 			for tag in tags:
 				# if this is an existing tag, add one to the count
-				old_tag = Tag.objects.filter(name=tag)
-				if old_tag:
-					old_tag = old_tag[0]
-					old_tag.count += 1
-					old_tag.save()
+				t = Tag.objects.filter(name=tag)
+				if t:
+					t = t[0]
+					t.count += 1
+					t.save()
 				else:
 					# add the new tag
 					t = Tag(name=tag,count = 1)
