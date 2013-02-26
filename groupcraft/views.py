@@ -10,12 +10,18 @@ from groupcraft.search import run_query
 
 from groupcraft.models import *
 
+import os
+
 def member_count(group):
 	ugs = UserGroup.objects.filter(group = group)
 	return ugs.__len__()
 
 def index(request):
 	template = loader.get_template('GroupCraft/new_index.html')
+
+	featured= []
+	for file in os.listdir("static/imgs/featured"):
+		featured.append(file)
 
 	groups = Group.objects.all()
 	groups = sorted(groups, key=lambda g: member_count(g), reverse=True)
@@ -36,7 +42,7 @@ def index(request):
 			posts = posts[0:5]
 
 	
-	context = RequestContext(request, {'groups' : groups,'tags':tags, 'posts':posts})
+	context = RequestContext(request, {'featured':featured,'groups' : groups,'tags':tags, 'posts':posts})
 	return HttpResponse(template.render(context))
 		
 def about(request):
@@ -71,7 +77,8 @@ def group(request, group_name_url):
 
 		posts = Post.objects.filter(group=group)
 
-		isMember = request.user.username in mem_names or request.user.username in admin_names
+		isMember = request.user.username in mem_names
+		isAdmin = request.user.username in admin_names
 
 		context_dict = {'name':group.name,
 		                'admins':admin_names,
@@ -80,7 +87,8 @@ def group(request, group_name_url):
 		                'valid':True,
 		                'tags':tags,
 		                'posts':posts,
-		                'isMember':isMember}
+		                'isMember':isMember,
+		                'isAdmin':isAdmin}
 	else:
 		context_dict['name'] = decode(group_name_url)
 		context_dict['valid'] = False

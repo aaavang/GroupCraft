@@ -32,7 +32,7 @@
 			{% endfor %}
 		{% endif %}
 		<br>
-		{% if isMember %}
+		{% if isMember or isAdmin %}
 		Post to this group:
 		<form action="/groupcraft/post/{{ url }}" method="POST">
 			{% csrf_token %}

@@ -3,6 +3,7 @@
 <!-- End Navigation -->
 
 {% block content %}
+	<title>GroupCraft</title>
 <div class="row">
 	<div class="twelve columns">
 
@@ -12,9 +13,9 @@
 			<div class="twelve columns ">
 
 				<div id="featured">
-					<img src="{{ STATIC_URL }}imgs/hobbit.jpg" alt="slide image">
-					<img src="{{ STATIC_URL }}imgs/minecraft.png" alt="slide image">
-					<img src="{{ STATIC_URL }}imgs/group.jpg" alt="slide image">
+					{% for file in featured %}
+						<img src="{{ STATIC_URL }}imgs/featured/{{ file }}" alt="slide image">
+					{% endfor %}
 				</div>
 
 			</div>
@@ -25,7 +26,7 @@
 		<!-- Mobile Header -->
 
 
-		</div><br>
+		<br>
 
 		<!-- End Mobile Header -->
 
