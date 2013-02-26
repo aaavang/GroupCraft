@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="656bceb1-8e7a-4986-9784-0305c2b08296" name="Default" comment="fixed tag code to handle special characters (+,#, etc)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/imgs/group.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/imgs/hobbit.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/imgs/minecraft.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc.db" afterPath="$PROJECT_DIR$/gc.db" />
+    <list default="true" id="656bceb1-8e7a-4986-9784-0305c2b08296" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupcraft/models.py" afterPath="$PROJECT_DIR$/groupcraft/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupcraft/views.py" afterPath="$PROJECT_DIR$/groupcraft/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
     </list>
     <ignored path="GroupCraft.iws" />
@@ -77,8 +71,10 @@
       <file leaf-file-name="new_index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="81" selection-start="317" selection-end="317" vertical-scroll-proportion="0.3803132">
-              <folding />
+            <state line="21" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.73378074">
+              <folding>
+                <element signature="e#963#997#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -419,7 +415,11 @@
       <created>1361891060377</created>
       <updated>1361891060377</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modified database to have functioning posts.  Added dynamic post fetching for the official groupcraft group.  All elements on the homepage are original-ish!">
+      <created>1361893227907</created>
+      <updated>1361893227907</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -444,14 +444,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="960" height="1050" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3429844" sideWeight="0.5966292" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3429844" sideWeight="0.5966292" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4033708" sideWeight="0.4910913" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4033708" sideWeight="0.5011136" order="7" side_tool="true" content_ui="tabs" />
@@ -501,7 +501,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed tag code to handle special characters (+,#, etc)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified database to have functioning posts.  Added dynamic post fetching for the official groupcraft group.  All elements on the homepage are original-ish!" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -519,6 +519,7 @@
     <MESSAGE value="added search bar that searches the database for tags, groups, and users" />
     <MESSAGE value="groups on homepage are now listed based of membership size" />
     <MESSAGE value="fixed tag code to handle special characters (+,#, etc)" />
+    <MESSAGE value="Modified database to have functioning posts.  Added dynamic post fetching for the official groupcraft group.  All elements on the homepage are original-ish!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -637,8 +638,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="81" selection-start="317" selection-end="317" vertical-scroll-proportion="0.3803132">
-          <folding />
+        <state line="21" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.73378074">
+          <folding>
+            <element signature="e#963#997#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
