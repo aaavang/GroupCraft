@@ -10,20 +10,25 @@ from groupcraft.search import run_query
 
 from groupcraft.models import *
 
+def member_count(group):
+	ugs = UserGroup.objects.filter(group = group)
+	return ugs.__len__()
+
 def index(request):
 	template = loader.get_template('GroupCraft/new_index.html')
 
 	groups = Group.objects.all()
+	groups = sorted(groups, key=lambda g: member_count(g), reverse=True)
 	if groups.__len__() > 5:
 		groups = groups[0:5]
 
 	tags = Tag.objects.all()
-	sorted_tags = sorted(tags, key=lambda t: t.count)
-	if sorted_tags.__len__() > 10:
-		sorted_tags = sorted_tags[0:5]
+	tags = sorted(tags, key=lambda t: t.count)
+	if tags.__len__() > 10:
+		tags = tags[0:5]
 
 	
-	context = RequestContext(request, {'groups' : groups,'tags':sorted_tags})
+	context = RequestContext(request, {'groups' : groups,'tags':tags})
 	return HttpResponse(template.render(context))
 		
 def about(request):
@@ -74,14 +79,18 @@ def user(request, username):
 	template = loader.get_template('GroupCraft/user.html')
 	data = {'username':username}
 
-	user = User.objects.filter(username = username)
-
+	user = User.objects.get(username = username)
 	if user:
-		user = user[0]
+		ugs = UserGroup.objects.filter(user = user)
+		groups = []
 
-	data['firstname'] = user.first_name
-	data['lastname'] = user.last_name
-	data['email'] = user.email
+		for ug in ugs:
+			groups.append(ug.group)
+
+		data['firstname'] = user.first_name
+		data['lastname'] = user.last_name
+		data['email'] = user.email
+		data['groups'] = groups
 
 	context = RequestContext(request, {'data':data})
 	return HttpResponse(template.render(context))

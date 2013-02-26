@@ -5,18 +5,18 @@
 
 	    <h3>Tags:</h3>
         {% for tag in tags %}
-            <A HREF="/groupcraft/tag{{tag.name}}">{{tag.name}} </A><br>
+            <A HREF="/groupcraft/tag/{{tag.name}}">{{tag.name}} </A><br>
         {% endfor %}
 	    <hr>
 	    <h3>Groups:</h3>
 	    {% for group in groups %}
-		    <A HREF="/groupcraft/tag{{group.name}}">{{group.name}} </A><br>
-		    {{ group.description }} <br>
+		    <A HREF="/groupcraft/group/{{group.name}}">{{group.name}} </A><br>
+		    {{ group.description }} <br><br>
 	    {% endfor %}
 	    <hr>
 	    <h3>Users:</h3>
 	    {% for user in users %}
-		    <A HREF="/groupcraft/tag{{user.username}}">{{user.username}} </A><br>
+		    <A HREF="/groupcraft/user/{{user.username}}">{{user.username}} </A><br>
 	    {% endfor %}
 	    <hr>
 {% endblock %}
