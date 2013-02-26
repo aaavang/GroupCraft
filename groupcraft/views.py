@@ -68,7 +68,7 @@ def group(request, group_name_url):
 		                'valid':True,
 		                'tags':tags}
 	else:
-		context_dict['name'] = Group.decode_group(group_name_url)
+		context_dict['name'] = decode(group_name_url)
 		context_dict['valid'] = False
 		context_dict['url'] = group_name_url
 
@@ -129,14 +129,14 @@ def add_group(request,group_name):
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
 			ug.save()
 			# show the index page with the list of categories
-			return HttpResponseRedirect('/groupcraft/group/'+ Group.encode_group(g.name))
+			return HttpResponseRedirect('/groupcraft/group/'+ (g.name))
  		else:
 			# the form contains errors,
 			# show the form again, with error messages
 			pass
 	else:
 		# a GET request was made, so we simply show a blank/empty form.
-		form = GroupForm(initial = {'name':Group.decode_group(group_name)})
+		form = GroupForm(initial = {'name':decode(group_name)})
 
 	# pass on the context, and the form data.
 	return render_to_response('GroupCraft/add_group.html',
@@ -150,7 +150,7 @@ def join_group(request, group_name_url):
 
 	context_dict = {}
 
-	groups = Group.objects.filter(name = Group.decode_group(group_name_url))
+	groups = Group.objects.filter(name = decode(group_name_url))
 	if groups:
 		group = groups[0] #there can be only one...
 
@@ -263,7 +263,7 @@ def tag(request,tag_name):
 	context_dict = {};
 	if tag:
 		tag = tag[0]
-		context_dict['name'] = tag.name
+		context_dict['name'] = tag.get_decoded()
 		tgs = TagGroup.objects.filter(tag = tag)
 		if tgs:
 			groups = []

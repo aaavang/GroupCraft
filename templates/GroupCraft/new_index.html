@@ -51,7 +51,7 @@
 						<div id="tags">
 							<ul>
 								{%  for t in tags %}
-									<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.name }}">{{ t.name }}</a></li>
+									<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.get_encoded }}">{{ t.get_decoded }}</a></li>
 								{% endfor %}
 							</ul>
 						</div>

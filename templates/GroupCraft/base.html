@@ -14,16 +14,27 @@
 		<ul class="right">
 			<li>
 				<script type="text/javascript">
-				function handleKeyPress(e,form){
-					var key=e.keyCode || e.which;
-					if (key==13){
-						form.submit();
+					function handleKeyPress(e,form){
+						var key=e.keyCode || e.which;
+						if (key==13){
+							form.submit();
+						}
 					}
-				}
-			</script>
+					function handleClick(e,input){
+						input.value = "";
+					}
+					function handleBlur(e,input){
+						if(input.value == ""){
+							input.value = "Search...";
+						}
+					}
+				</script>
 				<form action="/groupcraft/search/" method="post">
 					{% csrf_token %}
-				    <input type="text" name="query" value="Search..." onkeypress="handleKeyPress(event,this.form)" />
+					<input type="text" name="query" value="Search..."
+					       onkeypress="handleKeyPress(event,this.form)"
+					       onclick="handleClick(event,this)"
+					       onblur="handleBlur(event,this)" />
 				</form>
 
 			</li>
@@ -31,8 +42,12 @@
 				<a href="#">Account Actions...</a>
 
 				<ul class="dropdown">
-					<li><a href="/groupcraft/login">Login</a></li>
-					<li><a href="/groupcraft/register">Register</a></li>
+					{% if user.is_authenticated %}
+						<li><a href="/groupcraft/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/groupcraft/login">Login</a></li>
+						<li><a href="/groupcraft/register">Register</a></li>
+					{% endif %}
 				</ul>
 			</li>
 		</ul>

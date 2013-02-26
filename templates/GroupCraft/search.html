@@ -5,7 +5,7 @@
 
 	    <h3>Tags:</h3>
         {% for tag in tags %}
-            <A HREF="/groupcraft/tag/{{tag.name}}">{{tag.name}} </A><br>
+            <A HREF="/groupcraft/tag/{{tag.get_encoded}}">{{tag.get_decoded}} </A><br>
         {% endfor %}
 	    <hr>
 	    <h3>Groups:</h3>

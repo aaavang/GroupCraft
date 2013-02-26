@@ -2,7 +2,9 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-import urllib
+from django.utils.http import urlquote, urlunquote
+from django.utils.encoding import iri_to_uri
+
 
 class UserProfile(models.Model):
 	# This field is required.
@@ -19,23 +21,9 @@ class Group(models.Model):
 	description = models.TextField(max_length=512)
 
 	def get_url(self):
-		return self.encode_group(self.name)
+		return encode(self.name)
 
-	@staticmethod
-	def encode_group(group_name):
-		# returns the name converted for insert into url
-		encoded_name = group_name.replace(' ','_')
-		encoded_name = encoded_name.lower()
-		encoded_name = urllib.quote(encoded_name)
-		return encoded_name
 
-	@staticmethod
-	def decode_group(group_url):
-		# returns the category name given the category url portion
-		decoded_name = urllib.unquote(group_url)
-		decoded_name = group_url.replace('_',' ')
-
-		return decoded_name
 
 	def __unicode__(self):
 		return self.name
@@ -62,6 +50,12 @@ class UserGroup(models.Model):
 class Tag(models.Model):
 	name = models.CharField(max_length=32,unique=True)
 	count = models.PositiveIntegerField()
+
+	def get_encoded(self):
+		return encode(self.name)
+
+	def get_decoded(self):
+		return decode(self.name)
 
 	def __unicode__(self):
 		return self.name
@@ -91,5 +85,19 @@ class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ["website","picture"]
+
+def encode(string):
+	# returns the name converted for insert into url
+	encoded_string = string.replace(' ','_')
+	encoded_string = encoded_string.lower()
+	encoded_string = urlquote(encoded_string)
+	return iri_to_uri(encoded_string)
+
+def decode(string):
+	# returns the category name given the category url portion
+	decoded_string = urlunquote(string)
+	decoded_string = decoded_string.replace('_',' ')
+
+	return decoded_string
 
 
