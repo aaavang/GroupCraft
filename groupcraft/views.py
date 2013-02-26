@@ -69,12 +69,18 @@ def group(request, group_name_url):
 			else:
 				mem_names.append(ug.user.user.username)
 
+		posts = Post.objects.filter(group=group)
+
+		isMember = request.user.username in mem_names or request.user.username in admin_names
+
 		context_dict = {'name':group.name,
 		                'admins':admin_names,
 		                'members':mem_names,
 		                'url':group_name_url,
 		                'valid':True,
-		                'tags':tags}
+		                'tags':tags,
+		                'posts':posts,
+		                'isMember':isMember}
 	else:
 		context_dict['name'] = decode(group_name_url)
 		context_dict['valid'] = False
@@ -280,3 +286,23 @@ def tag(request,tag_name):
 			context_dict['groups'] = groups
 
 	return render_to_response('GroupCraft/tag.html',context_dict,context)
+
+def post(request,group_name_url):
+	context = RequestContext(request)
+	if request.method == 'POST':
+		g =filter(
+			lambda g: g.get_url() == group_name_url.lower(),
+			Group.objects.all())
+		g = g[0]
+		u = User.objects.get(username = request.user)
+		up = UserProfile.objects.get(user = u)
+
+		text = request.POST['textarea'].strip()
+		title = request.POST['title'].strip()
+		p = Post(title=title,text=text,group=g,author=up)
+		p.save()
+		return group(request,group_name_url)
+
+	else:
+		return group(request,group_name_url)
+

@@ -2,28 +2,48 @@
 {% block content %}
 	<TITLE>Group: {{ name }}</TITLE>
 	{% if valid %}
-	<H1>{{name}}</H1>
-    Admins: <br>
-	{% if admins %}
-		{% for name in admins %}
-			<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
-		{% endfor %}
-	{% endif %}
-    Members: <br>
-    {% if members %}
-        {% for name in members %}
-	        <a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
-        {% endfor %}
-    {% endif %}
+		<H1>{{name}}</H1>
+		Admins: <br>
+		{% if admins %}
+			{% for name in admins %}
+				<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+			{% endfor %}
+		{% endif %}
+		Members: <br>
+		{% if members %}
+			{% for name in members %}
+				<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+			{% endfor %}
+		{% endif %}
 		Tags: <br>
-    {% if tags %}
-        {% for tag in tags %}
-            <a href="/groupcraft/tag/{{ tag.get_encoded }}">{{ tag.get_decoded }}</a><br>
-        {% endfor %}
-    {% endif %}
-	<br>
+		{% if tags %}
+			{% for tag in tags %}
+				<a href="/groupcraft/tag/{{ tag.get_encoded }}">{{ tag.get_decoded }}</a><br>
+			{% endfor %}
+		{% endif %}
+		<br>
+		Posts: <br>
+		{% if posts %}
+			{% for post in posts %}
+				<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
+				{{ post.author }}<br>
+				{{ post.text }}<br>
+				<hr>
+			{% endfor %}
+		{% endif %}
+		<br>
+		{% if isMember %}
+		Post to this group:
+		<form action="/groupcraft/post/{{ url }}" method="POST">
+			{% csrf_token %}
+			Title: <input type="text" id="title" name="title">
+			Text:
+			<textarea name="textarea" id="textarea" ></textarea>
+			<input type="submit" value="Post">
+		</form>
+		{% endif %}
 
-    <a href="/groupcraft/join_group/{{ url }}">Join this Group!</a>
+		<a href="/groupcraft/join_group/{{ url }}">Join this Group!</a>
 	{% else %}
 		<H1>Group "{{name}}" Does Not Exist!</H1>
 		<br>

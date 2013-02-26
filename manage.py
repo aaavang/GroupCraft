@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 from django.core.management import execute_manager
 import imp
+import os
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'GroupCraft.settings'
 try:
 	imp.find_module('settings') # Assumed to be in the same directory.
 except ImportError:
