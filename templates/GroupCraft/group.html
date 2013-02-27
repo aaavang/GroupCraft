@@ -1,52 +1,109 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
-	<TITLE>Group: {{ name }}</TITLE>
 	{% if valid %}
-		<H1>{{name}}</H1>
-		Admins: <br>
-		{% if admins %}
-			{% for name in admins %}
-				<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
-			{% endfor %}
-		{% endif %}
-		Members: <br>
-		{% if members %}
-			{% for name in members %}
-				<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
-			{% endfor %}
-		{% endif %}
-		Tags: <br>
-		{% if tags %}
-			{% for tag in tags %}
-				<a href="/groupcraft/tag/{{ tag.get_encoded }}">{{ tag.get_decoded }}</a><br>
-			{% endfor %}
-		{% endif %}
-		<br>
-		Posts: <br>
-		{% if posts %}
-			{% for post in posts %}
-				<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
-				{% if post.replyTo %}
-					<b>In response to: {{ post.replyTo.title }} </b> <br>
-				{% endif %}
-				{{ post.author }}<br>
-				{{ post.text }}<br>
-				<hr>
-			{% endfor %}
-		{% endif %}
-		<br>
-		{% if isMember or isAdmin %}
-		Post to this group:
-		<form action="/groupcraft/post/{{ url }}" method="POST">
-			{% csrf_token %}
-			Title: <input type="text" id="title" name="title">
-			Text:
-			<textarea name="textarea" id="textarea" ></textarea>
-			<input type="submit" value="Post">
-		</form>
-		{% endif %}
+		<div class="row">
 
-		<a href="/groupcraft/join_group/{{ url }}">Join this Group!</a>
+			<h1>{{ name }}</h1>
+			<title>{{ name }}</title>
+			<hr>
+			<div class="row">
+				<div class="twelve columns">
+					<div class="row">
+
+						<!-- Updated tag cloud -->
+
+						<div class="four hide-for-small columns backborder">
+							<h4>Associated Tags</h4><hr/>
+							<div id="myCanvasContainer">
+								<canvas width="300" height="300" id="myCanvas">
+								</canvas>
+							</div>
+
+							<div id="tags">
+								<ul>
+									{%  for t in tags %}
+										<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.get_encoded }}">{{ t.get_decoded }}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+						<!-- End Cloud -->
+
+						<!-- Groups -->
+
+						<div class="four mobile-two hide-for-small columns backborder">
+
+							<h4>Group Members</h4><hr/>
+
+							<div class="hide-for-small">
+								<h6>Admins: </h6>
+								{% if admins %}
+									{% for name in admins %}
+										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+									{% endfor %}
+								{% endif %}
+								<h6>Members: </h6>
+								{% if members %}
+									{% for name in members %}
+										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+									{% endfor %}
+									{% else %}
+									    No members yet!<br>
+								{% endif %}
+								<br>
+							<a href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
+							<br>
+							</div>
+
+						</div>
+
+						<!-- End Groups -->
+
+						<!-- Users -->
+
+						<div class="four mobile-two hide-for-small columns backborder">
+
+							<h4>Posts</h4><hr/>
+
+							{% if posts %}
+								{% for post in posts %}
+									<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
+									{% if post.replyTo %}
+										<b>In response to: {{ post.replyTo.title }} </b> <br>
+									{% endif %}
+									{{ post.author }}<br>
+									{{ post.text }}<br>
+									<hr>
+								{% endfor %}
+							{% endif %}
+							<br>
+							{% if isMember or isAdmin %}
+								Post to this group:
+								<form action="/groupcraft/post/{{ url }}" method="POST">
+									{% csrf_token %}
+									Title: <input type="text" id="title" name="title">
+									Text:
+									<textarea name="textarea" id="textarea" ></textarea>
+									<input type="submit" value="Post">
+								</form>
+							{% endif %}
+
+						</div>
+
+						<!-- End Users -->
+
+
+						<!-- Feed -->
+
+						<!-- End Feed -->
+
+					</div>
+				</div>
+			</div>
+
+			<!-- End Content -->
+
+		</div>
 	{% else %}
 		<H1>Group "{{name}}" Does Not Exist!</H1>
 		<br>

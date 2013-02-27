@@ -1,15 +1,30 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
 	<TITLE>Tag Search: {{ name }}</TITLE>
-	{% if groups %}
-		<H1>Tag Search: {{name}}</H1>
-		<H3>Groups:</H3>
-		{% for group in groups %}
-				<a href="/groupcraft/group/{{ group.get_url }}"> {{ group.name }}</a><br>
-		{% endfor %}
-		<br>
+	<h1>Tag Search Results For: {{ name }}</h1>
 
-	{% else %}
-		<H1>Tag "{{name}}" Does Not Exist!</H1>
-	{% endif %}
+	<div class="row">
+	<div class="four mobile-two hide-for-small columns backborder centered">
+
+		<h4>Group Results</h4><hr/>
+
+		<div class="hide-for-small">
+			{% if groups %}
+				{% for g in groups %}
+					<div class="row">
+						<div class="one column">
+							<a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a>
+						</div>
+
+						<div class="nine columns">
+							<h5 class="subheader">{{ g.description }}</h5>
+						</div>
+					</div><hr/>
+				{% endfor %}
+			{% else %}
+				<h6>No Groups Found</h6>
+			{% endif %}
+		</div>
+
+	</div>
 {% endblock %}

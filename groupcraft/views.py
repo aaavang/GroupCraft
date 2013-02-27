@@ -100,22 +100,25 @@ def group(request, group_name_url):
 
 def user(request, username):
 	template = loader.get_template('GroupCraft/user.html')
-	data = {'username':username}
+	context_dict = {'username':username}
 
 	user = User.objects.get(username = username)
 	if user:
+		up = UserProfile.objects.get(user = user)
 		ugs = UserGroup.objects.filter(user = user)
 		groups = []
 
 		for ug in ugs:
-			groups.append(ug.group)
+			groups.append(ug)
 
-		data['firstname'] = user.first_name
-		data['lastname'] = user.last_name
-		data['email'] = user.email
-		data['groups'] = groups
+		context_dict['posts'] = Post.objects.filter(author = up)
 
-	context = RequestContext(request, {'data':data})
+		context_dict['firstname'] = user.first_name
+		context_dict['lastname'] = user.last_name
+		context_dict['email'] = user.email
+		context_dict['groups'] = groups
+
+	context = RequestContext(request, context_dict)
 	return HttpResponse(template.render(context))
 
 
@@ -262,7 +265,6 @@ def search(request):
 			group_results = []
 			user_results = []
 			for s in query:
-				tag_results = tag_results + list(Tag.objects.filter(name = s))
 				for t in tags:
 					if s in t.name.lower():
 						tag_results.append(t)
@@ -294,6 +296,8 @@ def tag(request,tag_name):
 			for tg in tgs:
 				groups.append(tg.group)
 			context_dict['groups'] = groups
+	else:
+		context_dict['name'] = decode(tag_name)
 
 	return render_to_response('GroupCraft/tag.html',context_dict,context)
 

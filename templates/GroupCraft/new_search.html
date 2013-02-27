@@ -11,7 +11,7 @@
 
 					<!-- Updated tag cloud -->
 
-					<div class="four hide-for-small columns">
+					<div class="four hide-for-small columns backborder">
 						<h4>Tag Results</h4><hr/>
 						<div id="myCanvasContainer">
 							<canvas width="300" height="300" id="myCanvas">
@@ -30,12 +30,12 @@
 
 					<!-- Groups -->
 
-					<div class="four mobile-two hide-for-small columns">
+					<div class="four mobile-two hide-for-small columns backborder">
 
 						<h4>Group Results</h4><hr/>
 
 						<div class="hide-for-small">
-							{% if g %}
+							{% if groups %}
 								{% for g in groups %}
 									<div class="row">
 										<div class="one column">
@@ -43,7 +43,7 @@
 										</div>
 
 										<div class="nine columns">
-											<h5 class="subheader"><a href="/groupcraft/group/{{ g.get_url }}">{{ g.description }}</a></h5>
+											<h5 class="subheader">{{ g.description }}</h5>
 										</div>
 									</div><hr/>
 								{% endfor %}
@@ -58,7 +58,7 @@
 
 					<!-- Users -->
 
-					<div class="four mobile-two hide-for-small columns">
+					<div class="four mobile-two hide-for-small columns backborder">
 
 						<h4>User Results</h4><hr/>
 
@@ -93,5 +93,4 @@
 
 	</div>
 	</div>
-	<script src="{{ STATIC_URL }}js/tagcanvas.min.js" type="text/javascript"></script>
 {% endblock %}

@@ -1,9 +1,87 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
-	<TITLE>User: {{ data.username }}</TITLE>
-	Email: {{ data.email }} <br> <br>
-	Associated Groups: <br>
-	{% for group in data.groups %}
-		<A HREF="/groupcraft/group/{{group.get_url}}">{{group.name}} </A><br>
-	{% endfor %}
+		<div class="row">
+
+			<h1>{{ username }}</h1>
+			<title>{{ username }}</title>
+			<hr>
+			<div class="row">
+				<div class="twelve columns">
+					<div class="row">
+
+						<!-- Updated tag cloud -->
+
+						<div class="four columns backborder">
+							<h4>User Info</h4><hr/>
+							Username: {{ username }}<br>
+							Name: {{ firstname }} {{ lastname }}<br>
+							Email: {{ email }}<br>
+							<br>
+						</div>
+						<!-- End Cloud -->
+
+						<!-- Groups -->
+
+						<div class="four mobile-two hide-for-small columns backborder">
+
+							<h4>Groups</h4><hr/>
+
+							{% for ug in groups %}
+							    <a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a>:
+							    {% if ug.isAdmin %}
+								    Admin<br>
+								{% else %}
+								    Member<br>
+								{% endif %}
+							{% endfor %}
+                            <br>
+						</div>
+
+						<!-- End Groups -->
+
+						<!-- Users -->
+
+						<div class="four mobile-two hide-for-small columns backborder">
+
+							<h4>Posts</h4><hr/>
+
+							{% if posts %}
+								{% for post in posts %}
+									<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
+									{% if post.replyTo %}
+										<b>In response to: {{ post.replyTo.title }} </b> <br>
+									{% endif %}
+									{{ post.author }}<br>
+									{{ post.text }}<br>
+									<hr>
+								{% endfor %}
+							{% endif %}
+							<br>
+							{% if isMember or isAdmin %}
+								Post to this group:
+								<form action="/groupcraft/post/{{ url }}" method="POST">
+									{% csrf_token %}
+									Title: <input type="text" id="title" name="title">
+									Text:
+									<textarea name="textarea" id="textarea" ></textarea>
+									<input type="submit" value="Post">
+								</form>
+							{% endif %}
+
+						</div>
+
+						<!-- End Users -->
+
+
+						<!-- Feed -->
+
+						<!-- End Feed -->
+
+					</div>
+				</div>
+			</div>
+
+			<!-- End Content -->
+
+		</div>
 {% endblock %}
