@@ -5,7 +5,7 @@ from groupcraft import views
 urlpatterns = patterns('',
 	url(r'^$', views.index, name='index'),
 	url(r'^about/$', views.about, name='about'),
-	url(r'^group/(?P<group_name_url>\w+)', views.group, name='group'),
+	url(r'^group/(?P<group_name_url>.+)', views.group, name='group'),
 	url(r'^post/(?P<group_name_url>\w+)', views.post, name='post'),
 	url(r'^tag/(?P<tag_name>.+)', views.tag, name='tag'),
 	url(r'^add_group/(?P<group_name>\w*)$', views.add_group, name='add_group'),

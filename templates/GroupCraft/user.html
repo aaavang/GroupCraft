@@ -4,6 +4,6 @@
 	Email: {{ data.email }} <br> <br>
 	Associated Groups: <br>
 	{% for group in data.groups %}
-		<A HREF="/groupcraft/group/{{group.name}}">{{group.name}} </A><br>
+		<A HREF="/groupcraft/group/{{group.get_url}}">{{group.name}} </A><br>
 	{% endfor %}
 {% endblock %}
