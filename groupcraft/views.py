@@ -161,12 +161,10 @@ def add_group(request,group_name):
 			# show the form again, with error messages
 			pass
 	else:
-		# a GET request was made, so we simply show a blank/empty form.
-		form = GroupForm(initial = {'name':decode(group_name)})
+		pass
 
-	# pass on the context, and the form data.
-	return render_to_response('GroupCraft/add_group.html',
-		{'form': form }, context)
+	# pass on the context
+	return HttpResponseRedirect('/groupcraft/')
 
 @login_required
 def join_group(request, group_name_url):

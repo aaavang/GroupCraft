@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656bceb1-8e7a-4986-9784-0305c2b08296" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc.db" afterPath="$PROJECT_DIR$/gc.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/GroupCraft.iml" afterPath="$PROJECT_DIR$/.idea/GroupCraft.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupcraft/views.py" afterPath="$PROJECT_DIR$/groupcraft/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/base.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/group.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/group.html" />
     </list>
     <ignored path="GroupCraft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,19 +43,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="group.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="42" selection-start="2290" selection-end="2290" vertical-scroll-proportion="0.1824611">
+            <state line="83" column="42" selection-start="2290" selection-end="2290" vertical-scroll-proportion="-4.9615383">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/groupcraft/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="35" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="163" column="39" selection-start="4738" selection-end="4738" vertical-scroll-proportion="0.0">
+            <state line="158" column="13" selection-start="4612" selection-end="4612" vertical-scroll-proportion="0.37380627">
               <folding />
             </state>
           </provider>
@@ -93,9 +97,9 @@
         <option value="$PROJECT_DIR$/templates/GroupCraft/new_search.html" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/user.html" />
-        <option value="$PROJECT_DIR$/groupcraft/views.py" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/base.html" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/group.html" />
+        <option value="$PROJECT_DIR$/groupcraft/views.py" />
       </list>
     </option>
   </component>
@@ -241,7 +245,7 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="H:/Git/cmd/git.exe" />
@@ -457,7 +461,11 @@
       <created>1361988372024</created>
       <updated>1361988372024</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="revamped the add_group algorithm.  It know uses some nifty javascript to be displayed in a modal reveal.">
+      <created>1361995789271</created>
+      <updated>1361995789271</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -484,6 +492,7 @@
     <frame x="0" y="0" width="960" height="1160" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -498,7 +507,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -539,7 +547,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="forgot a header" />
+    <option name="LAST_COMMIT_MESSAGE" value="revamped the add_group algorithm.  It know uses some nifty javascript to be displayed in a modal reveal." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -559,6 +567,7 @@
     <MESSAGE value="fixed user.html, tag.html, new_search.html, new_index.html, group.html, and base.html.  I applied the column style across all pages.  I think it looks really really slick now" />
     <MESSAGE value="added new class &quot;head&quot; which is to center the text in headers.  Yes I was lazy and didn't look for the existing block definitions" />
     <MESSAGE value="forgot a header" />
+    <MESSAGE value="revamped the add_group algorithm.  It know uses some nifty javascript to be displayed in a modal reveal." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -566,13 +575,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/groupcraft/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="37" selection-start="221" selection-end="221" vertical-scroll-proportion="0.11548913">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="14" selection-start="260" selection-end="260" vertical-scroll-proportion="0.18949045" />
@@ -662,16 +664,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="39" selection-start="4738" selection-end="4738" vertical-scroll-proportion="0.0">
+        <state line="83" column="42" selection-start="2290" selection-end="2290" vertical-scroll-proportion="-4.9615383">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
+    <entry file="file://$PROJECT_DIR$/groupcraft/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="42" selection-start="2290" selection-end="2290" vertical-scroll-proportion="0.1824611">
+        <state line="11" column="35" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="158" column="13" selection-start="4612" selection-end="4612" vertical-scroll-proportion="0.37380627">
           <folding />
         </state>
       </provider>
