@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="656bceb1-8e7a-4986-9784-0305c2b08296" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/basic/zurb.css" afterPath="$PROJECT_DIR$/static/css/basic/zurb.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/group.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/new_search.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/new_search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/tag.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/tag.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/user.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/user.html" />
     </list>
     <ignored path="GroupCraft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +23,28 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/groupcraft/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.26930693">
+            <state line="34" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="7" selection-start="61" selection-end="61" vertical-scroll-proportion="-1.3076923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_search.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="24" selection-start="95" selection-end="95" vertical-scroll-proportion="0.14592275">
               <folding />
             </state>
           </provider>
@@ -457,7 +470,11 @@
       <created>1361986855045</created>
       <updated>1361986855045</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added new class &quot;head&quot; which is to center the text in headers.  Yes I was lazy and didn't look for the existing block definitions">
+      <created>1361988328232</created>
+      <updated>1361988328232</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -595,13 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="90" selection-end="90" vertical-scroll-proportion="0.084367245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/db/models/query.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="112" column="0" selection-start="3766" selection-end="3766" vertical-scroll-proportion="0.0">
@@ -657,13 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.43776825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/GroupCraft/user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="40" selection-start="1354" selection-end="1354" vertical-scroll-proportion="0.69313306">
@@ -680,7 +683,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/groupcraft/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.26930693">
+        <state line="34" column="36" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="7" selection-start="61" selection-end="61" vertical-scroll-proportion="-1.3076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="95" selection-end="95" vertical-scroll-proportion="0.14592275">
           <folding />
         </state>
       </provider>
