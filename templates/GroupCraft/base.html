@@ -15,10 +15,10 @@
 		</ul>
 
 		<ul class="right">
-			<li>
-				<a href="/groupcraft/add_group">Add Group...</a>
+			<li class="has-button">
+				<a class="small round button" href="/groupcraft/add_group">Create Group...</a>
 			</li>
-			<li>
+			<li class="search">
 				<script type="text/javascript">
 					function handleKeyPress(e,form){
 						var key=e.keyCode || e.which;
@@ -37,7 +37,7 @@
 				</script>
 				<form action="/groupcraft/search/" method="post">
 					{% csrf_token %}
-					<input type="text" name="query" value="Search..."
+					<input type="search" name="query" placeholder="Search..."
 					       onkeypress="handleKeyPress(event,this.form)"
 					       onclick="handleClick(event,this)"
 					       onblur="handleBlur(event,this)" />
@@ -103,7 +103,7 @@
 		try {
 			TagCanvas.Start('myCanvas','tags', {
 				textFont: 'Impact,"Arial Black",sans-serif',
-				textColour: '#00f',
+				textColour: '#000',
 				textHeight: 25,
 				weight: true,
 				weightSizeMin: 12,

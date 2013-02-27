@@ -14,7 +14,7 @@
 
 				<div id="featured">
 					{% for file in featured %}
-						<img src="{{ STATIC_URL }}imgs/featured/{{ file }}" alt="slide image">
+						<img class="backborder" src="{{ STATIC_URL }}imgs/featured/{{ file }}" alt="slide image">
 					{% endfor %}
 				</div>
 
@@ -37,7 +37,7 @@
 
 					<!-- Image mid-column -->
 
-					<div class="four hide-for-small columns">
+					<div class="four hide-for-small columns backborder">
 						<h4>Trending Tags</h4><hr/>
 						<div id="myCanvasContainer">
 							<canvas width="300" height="300" id="myCanvas">
@@ -56,7 +56,7 @@
 
 					<!-- Shows -->
 
-					<div class="four mobile-two hide-for-small columns">
+					<div class="four mobile-two hide-for-small columns backborder" >
 
 						<h4>Largest Groups</h4><hr/>
 
@@ -81,7 +81,7 @@
 
 					<!-- Feed -->
 
-					<div class="four mobile-four columns">
+					<div class="four mobile-four columns backborder">
 
 						<h4>GroupCraft News</h4><hr/>
 						{% for p in posts %}

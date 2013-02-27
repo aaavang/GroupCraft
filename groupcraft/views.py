@@ -34,10 +34,11 @@ def index(request):
 		tags = tags[0:15]
 
 	posts = []
-	gc = Group.objects.get(name = "GroupCraft")
+	gc = Group.objects.filter(name = "GroupCraft")
 	if gc:
+		gc = gc[0]
 		posts = Post.objects.filter(group = gc)
-		posts = sorted(posts, key=lambda p: p.date)
+		posts = sorted(posts, key=lambda p: p.date, reverse=True)
 		if posts.__len__() > 5:
 			posts = posts[0:5]
 
@@ -252,6 +253,7 @@ def search(request):
 	if request.method == 'POST':
 		query = request.POST['query'].strip().lower()
 		if query:
+			context_dict['query'] = query
 			query = query.split()
 			tags = Tag.objects.all()
 			groups = Group.objects.all()
@@ -277,7 +279,7 @@ def search(request):
 			context_dict['users'] = user_results
 			context_dict['groups'] = group_results
 
-	return render_to_response('GroupCraft/search.html',context_dict, context)
+	return render_to_response('GroupCraft/new_search.html',context_dict, context)
 
 def tag(request,tag_name):
 	context = RequestContext(request)

@@ -26,6 +26,9 @@
 		{% if posts %}
 			{% for post in posts %}
 				<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
+				{% if post.replyTo %}
+					<b>In response to: {{ post.replyTo.title }} </b> <br>
+				{% endif %}
 				{{ post.author }}<br>
 				{{ post.text }}<br>
 				<hr>

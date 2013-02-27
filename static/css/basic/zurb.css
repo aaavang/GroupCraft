@@ -4,7 +4,7 @@
 
 html { font-size: 62.5%; }
 
-body { background: white; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 14px; line-height: 1; color: #222222; position: relative; -webkit-font-smoothing: antialiased; }
+body { background-image: url('/static/imgs/background.jpg');background-colour: white; background-attachment: fixed; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; font-size: 14px; line-height: 1; color: #222222; position: relative; -webkit-font-smoothing: antialiased; }
 
 /* Links ---------------------- */
 a img { border: none; }
@@ -214,6 +214,9 @@ form.custom .custom.disabled { background-color: #dddddd; }
 @-moz-document url-prefix() { form.custom div.custom.dropdown a.selector { height: 28px; } }
 
 .lt-ie9 form.custom div.custom.dropdown a.selector { height: 28px; }
+
+/* Background border */
+.backborder { background-color: #c1ccd2; border-radius: 15px; border-style:solid; border-width: 1px; border-color: white; }
 
 /* The Grid ---------------------- */
 .row { width: 1000px; max-width: 100%; min-width: 768px; margin: 0 auto; }
