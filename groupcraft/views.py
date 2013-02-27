@@ -155,7 +155,7 @@ def add_group(request,group_name):
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
 			ug.save()
 			# show the index page with the list of categories
-			return HttpResponseRedirect('/groupcraft/group/'+ (g.get_url))
+			return HttpResponseRedirect('/groupcraft/group/'+ (g.get_url()))
  		else:
 			# the form contains errors,
 			# show the form again, with error messages

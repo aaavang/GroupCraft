@@ -16,7 +16,7 @@
 
 		<ul class="right">
 			<li class="has-button">
-				<a class="small round button" href="/groupcraft/add_group">Create Group...</a>
+				<a class="small round button" data-reveal-id="createGroupModal">Create Group...</a>
 			</li>
 			<li class="search">
 				<script type="text/javascript">
@@ -91,6 +91,25 @@
 		</div>
 	</div>
 </footer>
+
+<div id="createGroupModal" class="reveal-modal expand">
+	<FORM id="group_form" method="post" action="/groupcraft/add_group/">
+		{% csrf_token %}
+
+        <fieldset>
+	        <legend>Group Creation</legend>
+	        <label>Group Title</label>
+	        <input id="id_name" type="text" name="name" maxlength="128" />
+            <label>Group Description</label>
+	        <textarea id="id_description" rows="10" cols="40" name="description"></textarea>
+            <label>Tags</label>
+	        <input id="id_tags" type="text" name="tags" maxlength="50" />
+
+	        <INPUT type="submit" name="submit" value="submit" />
+        </fieldset>
+	</FORM>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
 
 <!-- End Footer -->
 

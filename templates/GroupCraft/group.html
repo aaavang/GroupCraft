@@ -50,11 +50,11 @@
 										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
 									{% endfor %}
 								{% else %}
-									No members yet!<br>
+									No Members Yet!<br>
 								{% endif %}
 								<br>
 								<hr>
-								<a href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
+								<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
 								<br>
 							</div>
 
@@ -102,11 +102,6 @@
 
 						<!-- End Users -->
 
-
-						<!-- Feed -->
-
-						<!-- End Feed -->
-
 					</div>
 				</div>
 			</div>
@@ -115,8 +110,15 @@
 
 		</div>
 	{% else %}
-		<H1>Group "{{name}}" Does Not Exist!</H1>
-		<br>
-		<a href="/groupcraft/add_group/{{ url }}">Create this Group!</a>
+		<H1 class="head">Group "{{name}}" Does Not Exist!</H1>
+		<hr>
+		<script type="text/javascript">
+			function initializeName(){
+				document.getElementById('id_name').value = '{{ name }}';
+			}
+		</script>
+		<div class="head">
+			<a class="small round button head" data-reveal-id="createGroupModal" onclick="initializeName()">Create this Group!</a>
+		</div>
 	{% endif %}
 {% endblock %}
