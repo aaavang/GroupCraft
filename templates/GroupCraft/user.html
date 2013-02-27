@@ -1,87 +1,81 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
+	<div class="row">
+        <div class="twelve columns head">
+	        <h1>{{ username }}</h1>
+        </div>
+		<title>{{ username }}</title>
+		<hr>
 		<div class="row">
+			<div class="twelve columns">
+				<div class="row">
 
-			<h1>{{ username }}</h1>
-			<title>{{ username }}</title>
-			<hr>
-			<div class="row">
-				<div class="twelve columns">
-					<div class="row">
+					<!-- Updated tag cloud -->
 
-						<!-- Updated tag cloud -->
+					<div class="four columns backborder">
+						<h4 class="head">User Info</h4><hr/>
+						Username: {{ username }}<br>
+						Name: {{ firstname }} {{ lastname }}<br>
+						Email: {{ email }}<br>
+						<hr>
+					</div>
+					<!-- End Cloud -->
 
-						<div class="four columns backborder">
-							<h4>User Info</h4><hr/>
-							Username: {{ username }}<br>
-							Name: {{ firstname }} {{ lastname }}<br>
-							Email: {{ email }}<br>
-							<br>
-						</div>
-						<!-- End Cloud -->
+					<!-- Groups -->
 
-						<!-- Groups -->
+					<div class="four mobile-two hide-for-small columns backborder">
 
-						<div class="four mobile-two hide-for-small columns backborder">
+						<h4 class="head">Groups</h4><hr/>
 
-							<h4>Groups</h4><hr/>
-
-							{% for ug in groups %}
-							    <a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a>:
-							    {% if ug.isAdmin %}
-								    Admin<br>
-								{% else %}
-								    Member<br>
-								{% endif %}
-							{% endfor %}
-                            <br>
-						</div>
-
-						<!-- End Groups -->
-
-						<!-- Users -->
-
-						<div class="four mobile-two hide-for-small columns backborder">
-
-							<h4>Posts</h4><hr/>
-
-							{% if posts %}
-								{% for post in posts %}
-									<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
-									{% if post.replyTo %}
-										<b>In response to: {{ post.replyTo.title }} </b> <br>
+						{% for ug in groups %}
+							<div class="row">
+								<div class="two column">
+									<a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a>
+								</div>
+								<div class="two column offset-by-one">
+									{% if ug.isAdmin %}
+										Admin<br>
+									{% else %}
+										Member<br>
 									{% endif %}
-									{{ post.author }}<br>
-									{{ post.text }}<br>
-									<hr>
-								{% endfor %}
-							{% endif %}
-							<br>
-							{% if isMember or isAdmin %}
-								Post to this group:
-								<form action="/groupcraft/post/{{ url }}" method="POST">
-									{% csrf_token %}
-									Title: <input type="text" id="title" name="title">
-									Text:
-									<textarea name="textarea" id="textarea" ></textarea>
-									<input type="submit" value="Post">
-								</form>
-							{% endif %}
+								</div>
 
-						</div>
+								<div class="nine columns">
+									<h5 class="subheader">{{ ug.group.description }}</h5>
+								</div>
+							</div><hr/>
+						{% endfor %}
+					</div>
 
-						<!-- End Users -->
+					<!-- End Groups -->
 
+					<!-- Users -->
 
-						<!-- Feed -->
+					<div class="four mobile-two hide-for-small columns backborder">
 
-						<!-- End Feed -->
+						<h4 class="head">Posts</h4><hr/>
+
+						{% if posts %}
+							{% for post in posts %}
+								<a href="/groupcraft/post/{{ tag.get_encoded }}/{{ post.id }}">{{ post.title }}</a><br>
+								{% if post.replyTo %}
+									<b>In response to: {{ post.replyTo.title }} </b> <br>
+								{% endif %}
+								{{ post.author }}<br>
+								{{ post.text }}<br>
+								<hr>
+							{% endfor %}
+						{% endif %}
 
 					</div>
+
+					<!-- End Users -->
+
 				</div>
 			</div>
-
-			<!-- End Content -->
-
 		</div>
+
+		<!-- End Content -->
+
+	</div>
 {% endblock %}

@@ -38,7 +38,7 @@
 					<!-- Image mid-column -->
 
 					<div class="four hide-for-small columns backborder">
-						<h4>Trending Tags</h4><hr/>
+						<h4 class="head">Trending Tags</h4><hr/>
 						<div id="myCanvasContainer">
 							<canvas width="300" height="300" id="myCanvas">
 							</canvas>
@@ -58,7 +58,7 @@
 
 					<div class="four mobile-two hide-for-small columns backborder" >
 
-						<h4>Largest Groups</h4><hr/>
+						<h4 class="head">Largest Groups</h4><hr/>
 
 						<div class="hide-for-small">
 							{% for g in groups %}
@@ -83,7 +83,7 @@
 
 					<div class="four mobile-four columns backborder">
 
-						<h4>GroupCraft News</h4><hr/>
+						<h4 class="head">GroupCraft News</h4><hr/>
 						{% for p in posts %}
 						<div class="panel">
 							<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>

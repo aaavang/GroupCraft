@@ -2,8 +2,9 @@
 {% block content %}
 	{% if valid %}
 		<div class="row">
-
-			<h1>{{ name }}</h1>
+			<div class="head" class="twelve columns">
+				<h1>{{ name }}</h1>
+			</div>
 			<title>{{ name }}</title>
 			<hr>
 			<div class="row">
@@ -13,7 +14,7 @@
 						<!-- Updated tag cloud -->
 
 						<div class="four hide-for-small columns backborder">
-							<h4>Associated Tags</h4><hr/>
+							<h4 class="head">Associated Tags</h4><hr/>
 							<div id="myCanvasContainer">
 								<canvas width="300" height="300" id="myCanvas">
 								</canvas>
@@ -33,7 +34,7 @@
 
 						<div class="four mobile-two hide-for-small columns backborder">
 
-							<h4>Group Members</h4><hr/>
+							<h4 class="head">Group Members</h4><hr/>
 
 							<div class="hide-for-small">
 								<h6>Admins: </h6>
@@ -42,17 +43,19 @@
 										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
 									{% endfor %}
 								{% endif %}
+								<hr>
 								<h6>Members: </h6>
 								{% if members %}
 									{% for name in members %}
 										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
 									{% endfor %}
-									{% else %}
-									    No members yet!<br>
+								{% else %}
+									No members yet!<br>
 								{% endif %}
 								<br>
-							<a href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
-							<br>
+								<hr>
+								<a href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
+								<br>
 							</div>
 
 						</div>
@@ -63,7 +66,7 @@
 
 						<div class="four mobile-two hide-for-small columns backborder">
 
-							<h4>Posts</h4><hr/>
+							<h4 class="head">Posts</h4><hr/>
 
 							{% if posts %}
 								{% for post in posts %}
@@ -75,8 +78,10 @@
 									{{ post.text }}<br>
 									<hr>
 								{% endfor %}
+							{% else %}
+								No Posts Yet!
 							{% endif %}
-							<br>
+							<hr>
 							{% if isMember or isAdmin %}
 								Post to this group:
 								<form action="/groupcraft/post/{{ url }}" method="POST">
