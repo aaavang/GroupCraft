@@ -30,8 +30,8 @@ def index(request):
 
 	tags = Tag.objects.all()
 	tags = sorted(tags, key=lambda t: t.count)
-	if tags.__len__() > 10:
-		tags = tags[0:5]
+	if tags.__len__() > 15:
+		tags = tags[0:15]
 
 	posts = []
 	gc = Group.objects.get(name = "GroupCraft")
@@ -151,7 +151,7 @@ def add_group(request,group_name):
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
 			ug.save()
 			# show the index page with the list of categories
-			return HttpResponseRedirect('/groupcraft/group/'+ (g.name))
+			return HttpResponseRedirect('/groupcraft/group/'+ (g.get_url))
  		else:
 			# the form contains errors,
 			# show the form again, with error messages
@@ -281,7 +281,7 @@ def search(request):
 
 def tag(request,tag_name):
 	context = RequestContext(request)
-	tag = Tag.objects.filter(name = tag_name)
+	tag = filter(lambda t: t.name.lower() == tag_name,Tag.objects.all())
 	context_dict = {};
 	if tag:
 		tag = tag[0]
@@ -298,6 +298,7 @@ def tag(request,tag_name):
 def post(request,group_name_url):
 	context = RequestContext(request)
 	if request.method == 'POST':
+		# it's sad that I had to resort to lambda functions...
 		g =filter(
 			lambda g: g.get_url() == group_name_url.lower(),
 			Group.objects.all())

@@ -86,13 +86,11 @@
 						<h4>GroupCraft News</h4><hr/>
 						{% for p in posts %}
 						<div class="panel">
-							<h5><a href="#">{{ p.title }}</a></h5>
+							<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
 
 							<h6 class="subheader">
 								{{ p.get_snippet }}...
 							</h6>
-
-							<h6><a href="#">Read More »</a></h6>
 						</div>
 						{% endfor %}
 

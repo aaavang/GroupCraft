@@ -15,5 +15,6 @@ urlpatterns = patterns('',
 	url(r'^search/$', views.search, name='search'),
 	url(r'^user/(?P<username>\w+$)', views.user, name='user'),
 	url(r'^join_group/(?P<group_name_url>\w+)', views.join_group, name='join_group'),
+	url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/imgs/favicon.ico'})
 )
 
