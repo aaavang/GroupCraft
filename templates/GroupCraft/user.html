@@ -1,9 +1,9 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
 	<div class="row">
-        <div class="twelve columns head">
-	        <h1>{{ username }}</h1>
-        </div>
+		<div class="twelve columns head">
+			<h1>{{ username }}</h1>
+		</div>
 		<title>{{ username }}</title>
 		<hr>
 		<div class="row">
@@ -14,9 +14,11 @@
 
 					<div class="four columns backborder">
 						<h4 class="head">User Info</h4><hr/>
-						Username: {{ username }}<br>
-						Name: {{ firstname }} {{ lastname }}<br>
-						Email: {{ email }}<br>
+						<div class="panel">
+							Username: {{ username }}<br>
+							Name: {{ firstname }} {{ lastname }}<br>
+							Email: {{ email }}<br>
+						</div>
 						<hr>
 					</div>
 					<!-- End Cloud -->
@@ -26,25 +28,25 @@
 					<div class="four mobile-two hide-for-small columns backborder">
 
 						<h4 class="head">Groups</h4><hr/>
+						{% if groups %}
+							{% for ug in groups %}
+								<div class="panel">
+									<h5><a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a></h5>
 
-						{% for ug in groups %}
-							<div class="row">
-								<div class="two column">
-									<a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a>
-								</div>
-								<div class="two column offset-by-one">
 									{% if ug.isAdmin %}
 										Admin<br>
 									{% else %}
 										Member<br>
 									{% endif %}
-								</div>
 
-								<div class="nine columns">
-									<h5 class="subheader">{{ ug.group.description }}</h5>
+
+									<h6 class="subheader">{{ ug.group.description }}</h6>
+
 								</div>
-							</div><hr/>
-						{% endfor %}
+							{% endfor %}
+						{% else %}
+							<h6 class="head">No Groups Found</h6>
+						{% endif %}
 					</div>
 
 					<!-- End Groups -->

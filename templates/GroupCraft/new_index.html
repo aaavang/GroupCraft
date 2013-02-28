@@ -56,23 +56,18 @@
 
 					<!-- Shows -->
 
-					<div class="four mobile-two hide-for-small columns backborder" >
+					<div class="four columns backborder" >
 
 						<h4 class="head">Largest Groups</h4><hr/>
 
-						<div class="hide-for-small">
 							{% for g in groups %}
-								<div class="row">
-									<div class="one column">
-										<a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a>
-									</div>
+								<div class="panel">
+										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a><h5></h5>
 
-									<div class="nine columns">
-										<h5 class="subheader"><a href="/groupcraft/group/{{ g.get_url }}">{{ g.description }}</a></h5>
-									</div>
-								</div><hr/>
+										<h6 class="subheader">{{ g.description }}</h6>
+
+								</div>
 							{% endfor %}
-						</div>
 
 					</div>
 

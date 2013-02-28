@@ -37,15 +37,12 @@
 						<div class="hide-for-small">
 							{% if groups %}
 								{% for g in groups %}
-									<div class="row">
-										<div class="one column">
-											<a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a>
-										</div>
+									<div class="panel">
+										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a></h5>
 
-										<div class="nine columns">
-											<h5 class="subheader">{{ g.description }}</h5>
-										</div>
-									</div><hr/>
+											<h6 class="subheader">{{ g.description }}</h6>
+
+									</div>
 								{% endfor %}
 							{% else %}
 								<h6>No Groups Found</h6>
@@ -65,11 +62,9 @@
 						<div class="hide-for-small">
 							{% if users %}
 								{% for u in users %}
-									<div class="row">
-										<div class="one column">
-											<A HREF="/groupcraft/user/{{user.username}}">{{user.username}} </A><br>
-										</div>
-									</div><hr/>
+									<div class="panel">
+										<A HREF="/groupcraft/user/{{user.username}}">{{user.username}} </A><br>
+									</div>
 								{% endfor %}
 							{% else %}
 								<h6>No Groups Found</h6>

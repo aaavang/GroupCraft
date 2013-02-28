@@ -38,14 +38,17 @@
 
 							<div class="hide-for-small">
 								<h6>Admins: </h6>
+								<div class="panel">
 								{% if admins %}
 									{% for name in admins %}
 										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
 										<br>
 									{% endfor %}
 								{% endif %}
+								</div>
 								<hr>
 								<h6>Members: </h6>
+								<div class="panel">
 								{% if members %}
 									{% for name in members %}
 										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
@@ -57,7 +60,7 @@
 								{% else %}
 									No Members Yet!<br>
 								{% endif %}
-								<br>
+								</div>
 								<hr>
 								<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
 								<br>
