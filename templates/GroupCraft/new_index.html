@@ -89,8 +89,11 @@
 							<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
 
 							<h6 class="subheader">
-								At {{ p.date }}<br>
+								{% if p.replyTo %}
+									<b>In response to: {{ p.replyTo.title }} </b> <br>
+								{% endif %}
 								From <a href="/groupcraft/user/{{ p.author }}">{{ p.author }}</a> <br>
+								At {{ p.date }}<br>
 								{{ p.get_snippet }}...
 							</h6>
 						</div>

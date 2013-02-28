@@ -1,10 +1,8 @@
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
-from django.forms import ModelForm
 from django.utils.http import urlquote, urlunquote
 from django.utils.encoding import iri_to_uri
-
 
 class UserProfile(models.Model):
 	# This field is required.
@@ -22,8 +20,6 @@ class Group(models.Model):
 
 	def get_url(self):
 		return encode(self.name)
-
-
 
 	def __unicode__(self):
 		return self.name

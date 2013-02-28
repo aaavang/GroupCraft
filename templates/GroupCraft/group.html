@@ -40,14 +40,19 @@
 								<h6>Admins: </h6>
 								{% if admins %}
 									{% for name in admins %}
-										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
+										<br>
 									{% endfor %}
 								{% endif %}
 								<hr>
 								<h6>Members: </h6>
 								{% if members %}
 									{% for name in members %}
-										<a href="/groupcraft/user/{{ name }}">{{ name }}</a><br>
+										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
+										{% if isAdmin %}
+											<a class="small round alert button" href="/groupcraft/remove/{{ name }}/{{ url }}">&#215;</a>
+										{% endif %}
+										<br>
 									{% endfor %}
 								{% else %}
 									No Members Yet!<br>
