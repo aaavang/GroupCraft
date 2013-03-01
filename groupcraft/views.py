@@ -33,8 +33,8 @@ def index(request):
 	# select the 15 most popular tags
 	tags = Tag.objects.all()
 	tags = sorted(tags, key=lambda t: t.count)
-	if tags.__len__() > 15:
-		tags = tags[0:15]
+	if tags.__len__() > 10:
+		tags = tags[0:10]
 
 	# select the newest 5 posts from the GroupCraft group
 	posts = []
@@ -46,7 +46,7 @@ def index(request):
 		if posts.__len__() > 5:
 			posts = posts[0:5]
 
-	
+
 	context = RequestContext(request, {'featured':featured,'groups' : groups,'tags':tags, 'posts':posts})
 	return HttpResponse(template.render(context))
 
@@ -85,8 +85,13 @@ def group(request, group_name_url):
 
 		isMember = request.user.username in mem_names
 		isAdmin = request.user.username in admin_names
+		tag_string = ''
+		for tag in tags:
+			tag_string += tag.name + " "
 
 		context_dict = {'name':group.name,
+		                'desc':group.description,
+		                'tag_string':tag_string,
 		                'admins':admin_names,
 		                'members':mem_names,
 		                'url':group_name_url,
@@ -129,8 +134,26 @@ def user(request, username):
 
 # this view is called when a user wants to create a group by filling out the group
 # form
+def create_tags(g, tag_string):
+	tags = set(tag_string.split())
+	for tag in tags:
+		# if this is an existing tag, add one to the count
+		t = Tag.objects.filter(name=tag)
+		if t:
+			t = t[0]
+			t.count += 1
+			t.save()
+		else:
+			# add the new tag
+			t = Tag(name=tag, count=1)
+			t.save()
+		# associate this tag with this group
+		tg = TagGroup(tag=t, group=g)
+		tg.save()
+
+
 @login_required
-def add_group(request,group_name):
+def add_group(request):
 	# immediately get the context - as it may contain posting data
 	context = RequestContext(request)
 
@@ -144,21 +167,7 @@ def add_group(request,group_name):
 			g = form.save(commit=True)
 			# fetch the tags
 			tag_string = form.cleaned_data['tags']
-			tags = set(tag_string.split())
-			for tag in tags:
-				# if this is an existing tag, add one to the count
-				t = Tag.objects.filter(name=tag)
-				if t:
-					t = t[0]
-					t.count += 1
-					t.save()
-				else:
-					# add the new tag
-					t = Tag(name=tag,count = 1)
-					t.save()
-				# associate this tag with this group
-				tg = TagGroup(tag = t, group = g)
-				tg.save()
+			create_tags(g, tag_string)
 			u = User.objects.get(username = request.user)
 			profile = UserProfile.objects.get(user = u)
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
@@ -174,6 +183,21 @@ def add_group(request,group_name):
 
 	# pass on the context
 	return HttpResponseRedirect('/groupcraft/')
+
+@login_required
+def edit_group(request):
+	if request.method == 'POST':
+		old_name = request.POST['old_name']
+		g = Group.objects.get(name = old_name)
+		g.name = request.POST['name']
+		g.description = request.POST['description']
+		g.save()
+		tags = TagGroup.objects.filter(group = g)
+		tags.delete()
+		create_tags(g, request.POST['tags'])
+		return HttpResponseRedirect('/groupcraft/group/'+g.get_url())
+	else:
+		return HttpResponseRedirect('/groupcraft/')
 
 # this view is called when a user wants to join a group
 @login_required

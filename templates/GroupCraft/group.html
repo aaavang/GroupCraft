@@ -1,11 +1,24 @@
 {% extends 'GroupCraft/base.html' %}
 {% block content %}
+	<title>{{ name }}</title>
 	{% if valid %}
 		<div class="row">
 			<div class="head" class="twelve columns">
 				<h1>{{ name }}</h1>
 			</div>
-			<title>{{ name }}</title>
+
+			{% if isAdmin %}
+				<div class="head">
+				<script type="text/javascript">
+					function initializeModal() {
+						document.getElementById('id_name_m').value = '{{ name }}';
+						document.getElementById('id_description_m').value = '{{ desc }}';
+						document.getElementById('id_tags_m').value = "{{ tag_string }}";
+					}
+				</script>
+					<a class="small secondary round button" data-reveal-id="editGroupModal" onclick="initializeModal();">Edit Group Details</a>
+				</div>
+			{% endif %}
 			<hr>
 			<div class="row">
 				<div class="twelve columns">
@@ -39,27 +52,27 @@
 							<div class="hide-for-small">
 								<h6>Admins: </h6>
 								<div class="panel">
-								{% if admins %}
-									{% for name in admins %}
-										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
-										<br>
-									{% endfor %}
-								{% endif %}
+									{% if admins %}
+										{% for name in admins %}
+											<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
+											<br>
+										{% endfor %}
+									{% endif %}
 								</div>
 								<hr>
 								<h6>Members: </h6>
 								<div class="panel">
-								{% if members %}
-									{% for name in members %}
-										<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
-										{% if isAdmin %}
-											<a class="small round alert button" href="/groupcraft/remove/{{ name }}/{{ url }}">&#215;</a>
-										{% endif %}
-										<br>
-									{% endfor %}
-								{% else %}
-									No Members Yet!<br>
-								{% endif %}
+									{% if members %}
+										{% for name in members %}
+											<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
+											{% if isAdmin %}
+												<a class="small round alert button" href="/groupcraft/remove/{{ name }}/{{ url }}">&#215;</a>
+											{% endif %}
+											<br>
+										{% endfor %}
+									{% else %}
+										No Members Yet!<br>
+									{% endif %}
 								</div>
 								<hr>
 								<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
@@ -96,13 +109,16 @@
 							{% endif %}
 							<hr>
 							{% if isMember or isAdmin %}
-								Post to this group:
 								<form action="/groupcraft/post/{{ url }}" method="POST">
+								<fieldset>
+									<legend>Post to this Group</legend>
 									{% csrf_token %}
-									Title: <input type="text" id="title" name="title">
-									Text:
+									<label>Title:</label>
+									<input type="text" id="title" name="title">
+									<label>Text:</label>
 									<textarea name="textarea" id="textarea" ></textarea>
 									<input type="submit" value="Post">
+								</fieldset>
 								</form>
 							{% endif %}
 
@@ -129,4 +145,23 @@
 			<a class="small round button head" data-reveal-id="createGroupModal" onclick="initializeName()">Create this Group!</a>
 		</div>
 	{% endif %}
+	<div id="editGroupModal" class="reveal-modal medium">
+		<FORM id="group_form" method="post" action="/groupcraft/edit_group/">
+			{% csrf_token %}
+
+			<fieldset>
+				<legend>Group Details</legend>
+				<label>Group Title</label>
+				<input id="id_name_m" type="text" name="name" maxlength="128" />
+				<label>Group Description</label>
+				<textarea id="id_description_m" rows="10" cols="40" name="description"></textarea>
+				<label>Tags (seperated by spaces)</label>
+				<input id="id_tags_m" type="text" name="tags" maxlength="50" />
+				<input id="old_name_m" type="hidden" name="old_name" value="{{ name }}" />
+
+				<INPUT type="submit" name="submit" value="Update" />
+			</fieldset>
+		</FORM>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
 {% endblock %}
