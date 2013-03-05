@@ -16,7 +16,12 @@
 						<h4 class="head">User Info</h4><hr/>
 						<div class="panel">
 							Username: {{ username }}<br>
-							Name: {{ firstname }} {{ lastname }}<br>
+							Name:
+							{% if isUser %}
+								{{ firstname }} {{ lastname }}<br>
+							{% else %}
+								<i>Hidden</i><br>
+							{% endif %}
 							Email: {{ email }}<br>
 						</div>
 						<hr>
@@ -28,24 +33,28 @@
 					<div class="four mobile-two hide-for-small columns backborder">
 
 						<h4 class="head">Groups</h4><hr/>
-						{% if groups %}
-							{% for ug in groups %}
-								<div class="panel">
-									<h5><a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a></h5>
+						{% if isUser %}
+							{% if groups %}
+								{% for ug in groups %}
+									<div class="panel">
+										<h5><a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a></h5>
 
-									{% if ug.isAdmin %}
-										Admin<br>
-									{% else %}
-										Member<br>
-									{% endif %}
+										{% if ug.isAdmin %}
+											Admin<br>
+										{% else %}
+											Member<br>
+										{% endif %}
 
 
-									<h6 class="subheader">{{ ug.group.description }}</h6>
+										<h6 class="subheader">{{ ug.group.description }}</h6>
 
-								</div>
-							{% endfor %}
+									</div>
+								{% endfor %}
+							{% else %}
+								<h6 class="head">No Groups Found</h6>
+							{% endif %}
 						{% else %}
-							<h6 class="head">No Groups Found</h6>
+							<p class="head"><i>Hidden</i></p>
 						{% endif %}
 					</div>
 
@@ -56,22 +65,25 @@
 					<div class="four mobile-two hide-for-small columns backborder">
 
 						<h4 class="head">Posts</h4><hr/>
+						{% if isUser %}
+							{% if posts %}
+								{% for p in posts %}
+									<div class="panel">
+										<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
 
-						{% if posts %}
-							{% for p in posts %}
-								<div class="panel">
-									<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
-
-									<h6 class="subheader">
-										{% if p.replyTo %}
-											<b>In response to: {{ p.replyTo.title }} </b> <br>
-										{% endif %}
-										{{ p.author }}<br>
-										At {{ p.date }}<br>
-										{{ p.get_snippet }}...
-									</h6>
-								</div>
-							{% endfor %}
+										<h6 class="subheader">
+											{% if p.replyTo %}
+												<b>In response to: {{ p.replyTo.title }} </b> <br>
+											{% endif %}
+											{{ p.author }}<br>
+											At {{ p.date }}<br>
+											{{ p.get_snippet }}...
+										</h6>
+									</div>
+								{% endfor %}
+							{% endif %}
+						{% else %}
+							<p class="head"><i>Hidden</i></p>
 						{% endif %}
 
 					</div>

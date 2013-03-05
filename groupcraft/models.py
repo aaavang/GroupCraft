@@ -17,6 +17,7 @@ class UserProfile(models.Model):
 class Group(models.Model):
 	name = models.CharField(max_length=128,unique=True)
 	description = models.TextField(max_length=512)
+	isPrivate = models.BooleanField(default=False,null=False)
 
 	def get_url(self):
 		return encode(self.name)
@@ -68,8 +69,8 @@ class TagGroup(models.Model):
 
 # create a form for Category and Page
 class GroupForm(forms.ModelForm):
-	tags = forms.CharField(max_length=50,
-		help_text='Please enter the tags of the Group.')
+	tags = models.CharField(max_length=50,
+		help_text='Please enter the tags of the Group.',blank=True)
 
 	class Meta:
 		# associate the model, Group, with the ModelForm

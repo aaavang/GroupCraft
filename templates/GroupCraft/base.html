@@ -4,65 +4,65 @@
       type="image/png"
       href="{{ STATIC_URL }}imgs/favicon.ico" />
 <body>
-	<nav class="top-bar ">
-		<ul>
-			<li class="name"><h1><a href="/groupcraft">GroupCraft</a></h1></li>
-			<li class="toggle-topbar"><a href="#"></a></li>
+<nav class="top-bar ">
+	<ul>
+		<li class="name"><h1><a href="/groupcraft">GroupCraft</a></h1></li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+
+	<section>
+		<ul class="left">
 		</ul>
 
-		<section>
-			<ul class="left">
-			</ul>
+		<ul class="right">
+			<li class="has-button">
+				<a class="small round button" data-reveal-id="createGroupModal">Create Group...</a>
+			</li>
+			<li class="search">
+				<script type="text/javascript">
+					function handleKeyPress(e,form){
+						var key=e.keyCode || e.which;
+						if (key==13){
+							form.submit();
+						}
+					}
+					function handleClick(e,input){
+						input.value = "";
+					}
+					function handleBlur(e,input){
+						if(input.value == ""){
+							input.value = "Search...";
+						}
+					}
+				</script>
+				<form action="/groupcraft/search/" method="post">
+					{% csrf_token %}
+					<input type="search" name="query" placeholder="Search..."
+					       onkeypress="handleKeyPress(event,this.form)"
+					       onclick="handleClick(event,this)"
+					       onblur="handleBlur(event,this)" />
+				</form>
 
-			<ul class="right">
-				<li class="has-button">
-					<a class="small round button" data-reveal-id="createGroupModal">Create Group...</a>
-				</li>
-				<li class="search">
-					<script type="text/javascript">
-						function handleKeyPress(e,form){
-							var key=e.keyCode || e.which;
-							if (key==13){
-								form.submit();
-							}
-						}
-						function handleClick(e,input){
-							input.value = "";
-						}
-						function handleBlur(e,input){
-							if(input.value == ""){
-								input.value = "Search...";
-							}
-						}
-					</script>
-					<form action="/groupcraft/search/" method="post">
-						{% csrf_token %}
-						<input type="search" name="query" placeholder="Search..."
-						       onkeypress="handleKeyPress(event,this.form)"
-						       onclick="handleClick(event,this)"
-						       onblur="handleBlur(event,this)" />
-					</form>
-
-				</li>
-				<li class="has-dropdown">
-				    {% if user.is_authenticated %}
-					    <a href="/groupcraft/user/{{ user }}">{{ user }}</a>
+			</li>
+			<li class="has-dropdown">
+				{% if user.is_authenticated %}
+					<a href="/groupcraft/user/{{ user }}">{{ user }}</a>
 				{% else %}
-					    <a href="#">Account Actions...</a>
+					<a href="#">Account Actions...</a>
 				{% endif %}
 
-					<ul class="dropdown">
-						{% if user.is_authenticated %}
-							<li><a href="/groupcraft/logout">Logout</a></li>
-						{% else %}
-							<li><a data-reveal-id="loginModal" href="#">Login</a></li>
-							<li><a data-reveal-id="registerModal" href="#">Register</a></li>
-						{% endif %}
-					</ul>
-				</li>
-			</ul>
-		</section>
-	</nav>
+				<ul class="dropdown">
+					{% if user.is_authenticated %}
+						<li><a href="/groupcraft/logout">Logout</a></li>
+					{% else %}
+						<li><a data-reveal-id="loginModal" href="#">Login</a></li>
+						<li><a data-reveal-id="registerModal" href="#">Register</a></li>
+					{% endif %}
+				</ul>
+			</li>
+		</ul>
+	</section>
+</nav>
 
 <!-- End Navigation -->
 
@@ -77,8 +77,8 @@
 
 <!-- Footer -->
 
-<footer class="row">
-	<div class="twelve columns"><hr />
+<footer>
+	<div class="twelve columns inner"><hr />
 		<div class="row backborder">
 
 			<div class="six columns">
@@ -109,6 +109,8 @@
 			<textarea id="id_description" rows="10" cols="40" name="description"></textarea>
 			<label>Tags (seperated by spaces)</label>
 			<input id="id_tags" type="text" name="tags" maxlength="50" />
+			<label>Private?</label>
+			<input type="checkbox" name="isPrivate" id="isPrivate"> <br>
 
 			<INPUT type="submit" name="submit" value="submit" />
 		</fieldset>

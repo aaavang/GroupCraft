@@ -96,6 +96,7 @@ def group(request, group_name_url):
 		                'members':mem_names,
 		                'url':group_name_url,
 		                'valid':True,
+		                'isPrivate':group.isPrivate,
 		                'tags':tags,
 		                'posts':posts,
 		                'isMember':isMember,
@@ -128,6 +129,7 @@ def user(request, username):
 		context_dict['lastname'] = user.last_name
 		context_dict['email'] = user.email
 		context_dict['groups'] = groups
+		context_dict['isUser'] = request.user == user
 
 	context = RequestContext(request, context_dict)
 	return HttpResponse(template.render(context))
@@ -166,14 +168,15 @@ def add_group(request):
 			# so lets save the data to the model
 			g = form.save(commit=True)
 			# fetch the tags
-			tag_string = form.cleaned_data['tags']
-			create_tags(g, tag_string)
+			if 'tags' in form.cleaned_data.keys():
+				tag_string = form.cleaned_data['tags']
+				create_tags(g, tag_string)
 			u = User.objects.get(username = request.user)
 			profile = UserProfile.objects.get(user = u)
 			ug = UserGroup(user = profile,group = g, isAdmin = True)
 			ug.save()
 			# show the newly created group page
-			return HttpResponseRedirect('/groupcraft/group/'+ (g.get_url()))
+			return HttpResponseRedirect('/groupcraft/group/'+ g.get_url())
 		else:
 			# the form contains errors,
 			# show the form again, with error messages
@@ -193,6 +196,9 @@ def edit_group(request):
 		g.description = request.POST['description']
 		g.save()
 		tags = TagGroup.objects.filter(group = g)
+		for tag in tags:
+			tag.tag.count -= 1
+			tag.tag.save()
 		tags.delete()
 		create_tags(g, request.POST['tags'])
 		return HttpResponseRedirect('/groupcraft/group/'+g.get_url())
