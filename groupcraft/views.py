@@ -380,6 +380,28 @@ def post(request,group_name_url):
 	else:
 		return group(request,group_name_url)
 
+def ajax_post(request,group_name_url):
+	context = RequestContext(request)
+
+	# we only do something if this came from the form
+	if request.method == 'POST':
+		# it's sad that I had to resort to lambda functions...
+		g =filter(
+			lambda g: g.get_url() == group_name_url.lower(),
+			Group.objects.all())
+		g = g[0]
+		u = User.objects.get(username = request.user)
+		up = UserProfile.objects.get(user = u)
+
+		text = request.POST['textarea'].strip()
+		title = request.POST['title'].strip()
+		p = Post(title=title,text=text,group=g,author=up)
+		p.save()
+		return render_to_response('GroupCraft/post.html',{'post':p},context)
+
+	else:
+		return HttpResponse("")
+
 # this view is called to remove a user from a group
 def remove(request,username,group_name_url):
 	g =filter(

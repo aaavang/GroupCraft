@@ -1,4 +1,7 @@
 <HTML>
+<!-- Included JS Files -->
+<script src="{{ STATIC_URL }}js/zurb.js"></script>
+<script src="{{ STATIC_URL }}js/tagcanvas.min.js" type="text/javascript"></script>
 <LINK href="{{ STATIC_URL}}css/basic/zurb.css" rel="stylesheet" title="basicstyle" type="text/css" />
 <link rel="icon"
       type="image/png"
@@ -157,9 +160,7 @@
 
 <!-- End Footer -->
 
-<!-- Included JS Files -->
-<script src="{{ STATIC_URL }}js/zurb.js"></script>
-<script src="{{ STATIC_URL }}js/tagcanvas.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#featured').orbit({ fluid: '2x1' });
