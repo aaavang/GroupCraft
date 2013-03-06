@@ -140,7 +140,7 @@
 </div>
 
 <div id="registerModal" class="reveal-modal medium">
-	<FORM id="user_form" method="post" action="/groupcraft/register/">
+	<FORM id="user_form" method="post" action="/groupcraft/register/" enctype="multipart/form-data">
 		<fieldset>
 			<legend>Register</legend>
 			{% csrf_token %}
@@ -151,8 +151,8 @@
 			<p><label for="id_picture">Picture:</label> <input type="file" name="picture" id="id_picture" /></p>
 			<INPUT type="submit" name="submit" value="submit" />
 		</fieldset>
-		<a class="close-reveal-modal">&#215;</a>
 	</FORM>
+	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!-- End Footer -->

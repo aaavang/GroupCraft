@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from GroupCraft.settings import MEDIA_ROOT
 
 from groupcraft.models import *
 
@@ -125,6 +126,7 @@ def user(request, username):
 
 		context_dict['posts'] = sorted(Post.objects.filter(author = up),key= lambda p: p.date,reverse=True)
 
+		context_dict['userprofile'] = up
 		context_dict['firstname'] = user.first_name
 		context_dict['lastname'] = user.last_name
 		context_dict['email'] = user.email
@@ -228,6 +230,13 @@ def join_group(request, group_name_url):
 	else:
 		return HttpResponseRedirect('/groupcraft/'+ group_name_url)
 
+def save_file(file, path=''):
+	filename = file._get_name()
+	fd = open('%simgs/%s' % (MEDIA_ROOT, str(path) + str(filename)), 'wb' )
+	for chunk in file.chunks():
+		fd.write(chunk)
+	fd.close()
+
 # this view is called when a user submits the register form
 def register(request):
 	context = RequestContext(request)
@@ -246,7 +255,9 @@ def register(request):
 			user.save()
 			profile = pform.save(commit = False)
 			profile.user = user
+			profile.picture = request.FILES['picture']
 			profile.save()
+			save_file(request.FILES['picture'])
 			registered = True
 		else:
 			print uform.errors, pform.errors
