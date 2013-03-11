@@ -1,0 +1,124 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<div class="row">
+		<div class="twelve columns head">
+			<h1>{{ username }}</h1>
+
+		</div>
+		<title>{{ username }}</title>
+		<hr>
+		<div class="row">
+			<div class="twelve columns">
+				<div class="row">
+
+					<div class="two columns">
+						<dl class="vertical tabs">
+							<dd class="active"><a href="#info">User Info</a></dd>
+							<dd><a href="#groups">Groups</a></dd>
+							<dd><a href="#posts">Posts</a></dd>
+						</dl>
+					</div>
+					<div class="ten columns">
+						<ul class="tabs-content">
+
+							<li class="active" id="infoTab">
+								<!-- Updated user info -->
+
+								<div class="eight columns backborder offset-by-one">
+									<h4 class="head">User Info</h4><hr/>
+									<div class="panel six columns">
+										Username: {{ username }}<br>
+										Name:
+										{% if isUser %}
+											{{ firstname }} {{ lastname }}<br>
+										{% else %}
+											<i>Hidden</i><br>
+										{% endif %}
+										Email: {{ email }}<br>
+									</div>
+									<div class="six columns">
+										{% if userprofile.picture %}
+											<img class="image" src="{{MEDIA_URL}}{{userprofile.picture}}" width="200" height="150"/>
+										{% else %}
+											<img class="image" src="{{MEDIA_URL}}imgs/missing_user.png" width="200" height="150"/>
+										{% endif %}
+									</div>
+									<hr>
+								</div>
+								<!-- End info -->
+							</li>
+
+							<li id="groupsTab">
+								<!-- Groups -->
+
+								<div class="eight columns backborder offset-by-one">
+
+									<h4 class="head">Groups</h4><hr/>
+									{% if isUser %}
+										{% if groups %}
+											{% for ug in groups %}
+												<div class="panel">
+													<h5><a href="/groupcraft/group/{{ ug.group.get_url }}">{{ ug.group.name }}</a></h5>
+
+													{% if ug.isAdmin %}
+														Admin<br>
+													{% else %}
+														Member<br>
+													{% endif %}
+
+
+													<h6 class="subheader">{{ ug.group.description }}</h6>
+
+												</div>
+											{% endfor %}
+										{% else %}
+											<h6 class="head">No Groups Found</h6>
+										{% endif %}
+									{% else %}
+										<p class="head"><i>Hidden</i></p>
+									{% endif %}
+								</div>
+
+								<!-- End Groups -->
+							</li>
+							<li id="postsTab">
+								<!-- Users -->
+
+								<div class="eight columns backborder offset-by-one">
+
+									<h4 class="head">Posts</h4><hr/>
+									{% if isUser %}
+										{% if posts %}
+											{% for p in posts %}
+												<div class="panel">
+													<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
+
+													<h6 class="subheader">
+														{% if p.replyTo %}
+															<b>In response to: {{ p.replyTo.title }} </b> <br>
+														{% endif %}
+														{{ p.author }}<br>
+														At {{ p.date }}<br>
+														{{ p.get_snippet }}...
+													</h6>
+												</div>
+											{% endfor %}
+										{% endif %}
+									{% else %}
+										<p class="head"><i>Hidden</i></p>
+									{% endif %}
+
+								</div>
+
+								<!-- End Users -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- End Content -->
+
+	</div>
+{% endblock %}

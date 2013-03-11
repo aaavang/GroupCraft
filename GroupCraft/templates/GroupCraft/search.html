@@ -1,0 +1,22 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<h1> Search Results </h1>
+	<hr>
+
+	    <h3>Tags:</h3>
+        {% for tag in tags %}
+            <A HREF="/groupcraft/tag/{{tag.get_encoded}}">{{tag.get_decoded}} </A><br>
+        {% endfor %}
+	    <hr>
+	    <h3>Groups:</h3>
+	    {% for group in groups %}
+		    <A HREF="/groupcraft/group/{{group.get_url}}">{{group.name}} </A><br>
+		    {{ group.description }} <br><br>
+	    {% endfor %}
+	    <hr>
+	    <h3>Users:</h3>
+	    {% for user in users %}
+		    <A HREF="/groupcraft/user/{{user.username}}">{{user.username}} </A><br>
+	    {% endfor %}
+	    <hr>
+{% endblock %}

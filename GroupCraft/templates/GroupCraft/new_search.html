@@ -1,0 +1,91 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<div class="row">
+
+		<h1 class="head">Search Results For: {{ query }}</h1>
+		<title>Search: {{ query }}</title>
+		<hr>
+		<div class="row">
+			<div class="twelve columns">
+				<div class="row">
+
+					<!-- Updated tag cloud -->
+
+					<div class="four hide-for-small columns backborder">
+						<h4 class="head">Tag Results</h4><hr/>
+						<div id="myCanvasContainer">
+							<canvas width="300" height="300" id="myCanvas">
+							</canvas>
+						</div>
+
+						<div id="tags">
+							<ul>
+								{%  for t in tags %}
+									<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.get_encoded }}">{{ t.get_decoded }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<!-- End Cloud -->
+
+					<!-- Groups -->
+
+					<div class="four mobile-two hide-for-small columns backborder">
+
+						<h4 class="head">Group Results</h4><hr/>
+
+						<div class="hide-for-small">
+							{% if groups %}
+								{% for g in groups %}
+									<div class="panel">
+										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a></h5>
+
+											<h6 class="subheader">{{ g.description }}</h6>
+
+									</div>
+								{% endfor %}
+							{% else %}
+								<h6>No Groups Found</h6>
+							{% endif %}
+						</div>
+
+					</div>
+
+					<!-- End Groups -->
+
+					<!-- Users -->
+
+					<div class="four mobile-two hide-for-small columns backborder">
+
+						<h4 class="head">User Results</h4><hr/>
+
+						<div class="hide-for-small">
+							{% if users %}
+								{% for user in users %}
+									<div class="panel">
+										<A HREF="/groupcraft/user/{{user.username}}">{{user.username}} </A><br>
+									</div>
+								{% endfor %}
+							{% else %}
+								<h6>No Groups Found</h6>
+							{% endif %}
+						</div>
+
+					</div>
+
+					<!-- End Users -->
+
+
+					<!-- Feed -->
+
+					<!-- End Feed -->
+
+				</div>
+			</div>
+		</div>
+
+		<!-- End Content -->
+
+	</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,189 @@
+<HTML>
+<!-- Included JS Files -->
+<script src="{{ STATIC_URL }}js/zurb.js"></script>
+<script src="{{ STATIC_URL }}js/tagcanvas.min.js" type="text/javascript"></script>
+<LINK href="{{ STATIC_URL}}css/basic/zurb.css" rel="stylesheet" title="basicstyle" type="text/css" />
+<link rel="icon"
+      type="image/png"
+      href="{{ STATIC_URL }}imgs/favicon.ico" />
+<body>
+<nav class="top-bar ">
+	<ul>
+		<li class="name"><h1><a href="/groupcraft">GroupCraft</a></h1></li>
+		<li class="toggle-topbar"><a href="#"></a></li>
+	</ul>
+
+	<section>
+		<ul class="left">
+		</ul>
+
+		<ul class="right">
+			<li class="has-button">
+				<a class="small round button" data-reveal-id="createGroupModal">Create Group...</a>
+			</li>
+			<li class="search">
+				<script type="text/javascript">
+					function handleKeyPress(e,form){
+						var key=e.keyCode || e.which;
+						if (key==13){
+							form.submit();
+						}
+					}
+					function handleClick(e,input){
+						input.value = "";
+					}
+					function handleBlur(e,input){
+						if(input.value == ""){
+							input.value = "Search...";
+						}
+					}
+				</script>
+				<form action="/groupcraft/search/" method="post">
+					{% csrf_token %}
+					<input type="search" name="query" placeholder="Search..."
+					       onkeypress="handleKeyPress(event,this.form)"
+					       onclick="handleClick(event,this)"
+					       onblur="handleBlur(event,this)" />
+				</form>
+
+			</li>
+			<li class="has-dropdown">
+				{% if user.is_authenticated %}
+					<a href="/groupcraft/user/{{ user }}">{{ user }}</a>
+				{% else %}
+					<a href="#">Account Actions...</a>
+				{% endif %}
+
+				<ul class="dropdown">
+					{% if user.is_authenticated %}
+						<li><a href="/groupcraft/logout">Logout</a></li>
+					{% else %}
+						<li><a data-reveal-id="loginModal" href="#">Login</a></li>
+						<li><a data-reveal-id="registerModal" href="#">Register</a></li>
+					{% endif %}
+				</ul>
+			</li>
+		</ul>
+	</section>
+</nav>
+
+<!-- End Navigation -->
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+
+<!-- Footer -->
+
+<footer>
+	<div class="twelve columns inner"><hr />
+		<div class="row backborder">
+
+			<div class="six columns">
+				<p>&copy; GroupCraft Ltd. 2013</p>
+			</div>
+
+			<div class="six columns">
+				<ul class="link-list right">
+					<li><a href="/groupcraft">Home</a></li>
+					<li><a href="/groupcraft/about">About</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</footer>
+
+<div id="createGroupModal" class="reveal-modal medium">
+	<h2 class="head">Create a Group</h2>
+	<FORM id="group_form" method="post" action="/groupcraft/add_group/">
+		{% csrf_token %}
+
+		<fieldset>
+			<legend>Group Creation</legend>
+			<label>Group Title</label>
+			<input id="id_name" type="text" name="name" maxlength="128" />
+			<label>Group Description</label>
+			<textarea id="id_description" rows="10" cols="40" name="description"></textarea>
+			<label>Tags (seperated by spaces)</label>
+			<input id="id_tags" type="text" name="tags" maxlength="50" />
+			<label title="Can unregistered users view group details?">Is This Group Private?</label>
+			<input  type="checkbox" name="isPrivate" id="isPrivate"> <br>
+
+			<INPUT type="submit" name="submit" value="submit" />
+		</fieldset>
+	</FORM>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="loginModal" class="reveal-modal medium">
+	<FORM id="login_form" method="post" action="/groupcraft/login/">
+		<fieldset>
+			<legend>Login</legend>
+			<input type="hidden" name="next" id="next" value=/groupcraft />
+			{% csrf_token %}
+			<label>Username</label>
+			<input type="text" name="username" value="" id="username" size="50" />
+			<br />
+			<label>Password</label>
+			<input type="password" name="password" value="" id="password" size="50" />
+			<br />
+			<INPUT type="submit" name="submit" value="submit" />
+		</fieldset>
+	</FORM>
+	<a class="close-reveal-modal">&#215;</a>
+	<P>
+		<A class="small round button" data-reveal-id="registerModal">Register</A>
+	</P>
+</div>
+
+<div id="registerModal" class="reveal-modal medium">
+	<FORM id="user_form" method="post" action="/groupcraft/register/" enctype="multipart/form-data">
+		<fieldset>
+			<legend>Register</legend>
+			{% csrf_token %}
+			<p><label for="id_username">Username:</label> <input id="id_username" type="text" name="username" maxlength="30" /> <span class="helptext">Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters</span></p>
+			<p><label for="id_email">E-mail address:</label> <input id="id_email" type="text" name="email" maxlength="75" /></p>
+			<p><label for="id_password">Password:</label> <input id="id_password" type="text" name="password" maxlength="128" /></p>
+			<p><label for="id_website">Website:</label> <input id="id_website" type="text" name="website" maxlength="200" /></p>
+			<p><label for="id_picture">Picture:</label> <input type="file" name="picture" id="id_picture" /></p>
+			<INPUT type="submit" name="submit" value="submit" />
+		</fieldset>
+	</FORM>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- End Footer -->
+
+
+<script type="text/javascript">
+	$(window).load(function() {
+		$('#featured').orbit({ fluid: '2x1' });
+
+		try {
+			TagCanvas.Start('myCanvas','tags', {
+				textFont: 'Algerian,"Arial Black",sans-serif',
+				textColour: '#000000',
+				textHeight: 25,
+				weight: true,
+				weightSizeMin: 12,
+				weightSizeMax: 50,
+				decel: 1,
+				initial:[.15, .1],
+				freezeActive:true
+				/* more options */
+			});
+		} catch(e) {
+			// something went wrong, hide the canvas container
+			document.getElementById('myCanvasContainer').style.display = 'none';
+		}
+	});
+</script>
+<!-- End Footer -->
+</body>
+</HTML>

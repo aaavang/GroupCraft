@@ -1,0 +1,23 @@
+{% extends 'GroupCraft/base.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+{% block content %}
+	{% if groups %}
+		<UL>
+			{% for g in groups %}
+				<LI><A HREF="/groupcraft/group/{{g.get_url}}">{{g.name}}</A></LI>
+			{% endfor %}
+		</UL>
+	{% else %}
+		<P>No Groups at present.</P>
+	{% endif %}
+	{% if user.is_authenticated %}
+		<a href="/groupcraft/add_group/">Create a Group</a>
+	{% endif %}
+	<br/>
+{% endblock %}
+
+    </BODY>
+</HTML>
