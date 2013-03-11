@@ -5,140 +5,170 @@
 		<div class="row">
 			<div class="head" class="twelve columns">
 				<h1>{{ name }}</h1>
+				{% if isAdmin %}
+					<div class="head">
+						<script type="text/javascript">
+							function initializeModal() {
+								document.getElementById('id_name_m').value = '{{ name }}';
+								document.getElementById('id_description_m').value = "{{ esc_desc }}";
+								document.getElementById('id_tags_m').value = "{{ tag_string }}";
+							}
+						</script>
+						<a class="small secondary round button" data-reveal-id="editGroupModal" onclick="initializeModal();">Edit Group...</a>
+					</div>
+				{% endif %}
 			</div>
 
-			{% if isAdmin %}
-				<div class="head">
-					<script type="text/javascript">
-						function initializeModal() {
-							document.getElementById('id_name_m').value = '{{ name }}';
-							document.getElementById('id_description_m').value = '{{ desc }}';
-							document.getElementById('id_tags_m').value = "{{ tag_string }}";
-						}
-					</script>
-					<a class="small secondary round button" data-reveal-id="editGroupModal" onclick="initializeModal();">Edit Group...</a>
-				</div>
-			{% endif %}
+
 			<hr>
-			<div class="row">
-				<div class="eight columns centered panel">
-					<p>{{ desc }}</p>
-				</div>
-			</div>
-			<br>
 			<div class="row">
 				<div class="twelve columns">
 					<div class="row">
 
-						<!-- Updated tag cloud -->
-
-						<div class="four hide-for-small columns backborder">
-							<h4 class="head">Associated Tags</h4><hr/>
-							<div id="myCanvasContainer">
-								<canvas width="300" height="300" id="myCanvas">
-								</canvas>
-							</div>
-
-							<div id="tags">
-								<ul>
-									{%  for t in tags %}
-										<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.get_encoded }}">{{ t.get_decoded }}</a></li>
-									{% endfor %}
-								</ul>
-							</div>
+						<div class="two columns">
+							<dl class="vertical tabs">
+								<dd class="active"><a href="#about">Group Details</a></dd>
+								<dd><a href="#members">Members</a></dd>
+								<dd><a href="#posts">Posts</a></dd>
+							</dl>
 						</div>
-						<!-- End Cloud -->
+						<ul class="tabs-content">
 
-						<!-- Groups -->
+							<li class="active" id="aboutTab">
+								<!-- Group Details -->
 
-						<div class="four mobile-two hide-for-small columns backborder">
-
-							<h4 class="head">Group Members</h4><hr/>
-
-							{% if not isPrivate or isAdmin or isMember%}
-								<div class="hide-for-small">
-									<h6>Admins: </h6>
-									<div class="panel">
-										{% if admins %}
-											{% for name in admins %}
-												<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
-												<br>
-											{% endfor %}
-										{% endif %}
-									</div>
-									<hr>
-									<h6>Members: </h6>
-									<div class="panel">
-										{% if members %}
-											{% for name in members %}
-												<a href="/groupcraft/user/{{ name }}">{{ name }}</a>
-												{% if isAdmin %}
-													<a class="small round alert button" href="/groupcraft/remove/{{ name }}/{{ url }}">&#215;</a>
-												{% endif %}
-												<br>
-											{% endfor %}
-										{% else %}
-											No Members Yet!<br>
-										{% endif %}
-									</div>
-									<hr>
-									<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
-									<br>
+								<div class="eight columns backborder">
+									<h4 class="head">Group Description</h4><hr/>
+									<p class="panel">
+										{% for line in desc %}
+											{{ line }} <br>
+										{% endfor %}
+									</p>
 								</div>
-							{% else %}
-								<p class="head"><i>Hidden</i></p>
-							{% endif %}
-						</div>
+								<!-- End Group -->
 
-						<!-- End Groups -->
+							</li>
+							<li id="membersTab">
 
-						<!-- Users -->
+								<!-- Group Members -->
 
-						<div class="four mobile-two hide-for-small columns backborder">
+								<div class="eight columns backborder">
 
-							<h4 class="head">Posts</h4><hr/>
-							{% if not isPrivate or isAdmin or isMember%}
-								<div id="posts">
-								{% if posts %}
-									{% for p in posts %}
-										<div class="panel">
-											<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
+									<h4 class="head">Group Members</h4><hr/>
 
-											<h6 class="subheader">
-												At {{ p.date }}<br>
-												{% if p.replyTo %}
-													<b>In response to: {{ p.replyTo.title }} </b> <br>
+									{% if not isPrivate or isAdmin or isMember%}
+										<div class="hide-for-small">
+											<h6>Admins: </h6>
+											<div class="panel">
+												{% if admins %}
+													<ul class="inline-list">
+														{% for admin in admins %}
+															<li>
+																<div class="head">
+																	{% if admin.picture %}
+																		<a href="/groupcraft/user/{{ admin.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}{{admin.picture}}" width="50" height="50"/></a>
+																	{% else %}
+																		<a href="/groupcraft/user/{{ admin.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}missing_user.png" width="50" height="50"/></a>
+																	{% endif %}
+																	<br>
+																	<a href="/groupcraft/user/{{ admin.user.username }}">{{ admin.user.username }}</a>
+																</div>
+															</li>
+														{% endfor %}
+													</ul>
 												{% endif %}
-												From <a href="/groupcraft/user/{{ p.author }}">{{ p.author }}</a> <br>
-												{{ p.get_snippet }}...
-											</h6>
+											</div>
+											<hr>
+											<h6>Members: </h6>
+											<div class="panel">
+												{% if members %}
+													<ul class="inline-list">
+														{% for member in members %}
+															<li>
+																<div class="head">
+																	{% if member.picture %}
+																		<a href="/groupcraft/user/{{ member.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}{{member.picture}}" width="50" height="50"/></a>
+																	{% else %}
+																		<a href="/groupcraft/user/{{ member.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}imgs/missing_user.png" width="50" height="50"/></a>
+																	{% endif %}
+																	<br>
+																	<a href="/groupcraft/user/{{ member.user.username }}">{{ member.user.username }}</a>
+																</div>
+															</li>
+														{% endfor %}
+													</ul>
+												{% else %}
+													No Members Yet!<br>
+												{% endif %}
+											</div>
+											<hr>
+											{% if not isAdmin and not isMember %}
+												<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
+											{% elif isMember or isAdmin and numAdmins > 1 %}
+												<a class="small round button" href="/groupcraft/remove/{{ user.username }}/{{ url }}">Leave This Group!</a><br>
+											{% endif %}
 										</div>
-									{% endfor %}
-								{% else %}
-									No Posts Yet!
-								{% endif %}
+									{% else %}
+										<p class="head"><i>Hidden</i></p>
+									{% endif %}
 								</div>
-								<hr>
-								{% if isMember or isAdmin %}
-									<form method="POST" id="post">
-										<fieldset>
-											<legend>Post to this Group</legend>
-											{% csrf_token %}
-											<label>Title:</label>
-											<input type="text" id="title" name="title">
-											<label>Text:</label>
-											<textarea name="textarea" id="textarea" ></textarea>
-											<input type="submit" value="Post">
-										</fieldset>
-									</form>
-								{% endif %}
-							{% else %}
-								<p class="head"><i>Hidden</i></p>
-							{% endif %}
+							</li>
 
-						</div>
+							<!-- End Members -->
 
-						<!-- End Users -->
+							<!-- Posts -->
+							<li id="postsTab">
+								<div class="ten columns">
+									<div class="twelve columns backborder">
+
+										<h4 class="head">Posts</h4><hr/>
+										{% if isMember or isAdmin %}
+											<form method="POST" id="post">
+												<fieldset>
+													<legend>Post to this Group</legend>
+													{% csrf_token %}
+													<label>Title:</label>
+													<input type="text" id="title" name="title">
+													<label>Text:</label>
+													<textarea name="textarea" id="textarea" ></textarea>
+													<input type="submit" value="Post">
+												</fieldset>
+											</form>
+										{% endif %}
+										{% if not isPrivate or isAdmin or isMember%}
+											<div id="posts">
+												{% if posts %}
+													{% for p in posts %}
+														<div class="panel">
+															<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
+
+															<h6 class="subheader">
+																At {{ p.date }}<br>
+																{% if p.replyTo %}
+																	<b>In response to: {{ p.replyTo.title }} </b> <br>
+																{% endif %}
+																From <a href="/groupcraft/user/{{ p.author }}">{{ p.author }}</a> <br>
+																{% for line in p.get_snippet.splitlines %}
+																	{{ line }}
+																{% endfor %}
+															</h6>
+														</div>
+													{% endfor %}
+												{% else %}
+													<p class="head"><i>No Posts Yet!</i></p>
+												{% endif %}
+											</div>
+										{% else %}
+											<p class="head"><i>Hidden</i></p>
+										{% endif %}
+
+
+									</div>
+								</div>
+							</li>
+
+							<!-- End Posts -->
+						</ul>
 
 					</div>
 				</div>
@@ -204,7 +234,11 @@
 
 				// callback handler that will be called on success
 				request.done(function (response, textStatus, jqXHR){
-					$("#posts").append(response);
+					if($("#posts").html().indexOf("No Posts Yet!") !== -1) {
+						$("#posts").html(response);
+					} else {
+						$("#posts").prepend(response);
+					}
 				});
 
 				// callback handler that will be called on failure

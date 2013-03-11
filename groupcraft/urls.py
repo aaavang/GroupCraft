@@ -15,8 +15,10 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.user_login, name='login'),
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^search/$', views.search, name='search'),
+	url(r'^browse/$', views.browse, name='browse'),
 	url(r'^user/(?P<username>\w+$)', views.user, name='user'),
 	url(r'^join_group/(?P<group_name_url>\w+)', views.join_group, name='join_group'),
-	url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/imgs/favicon.ico'})
+	url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/imgs/favicon.ico'}),
+
 )
 

@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656bceb1-8e7a-4986-9784-0305c2b08296" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/GroupCraft/post.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/GroupCraft/browse.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gc.db" afterPath="$PROJECT_DIR$/gc.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupcraft/urls.py" afterPath="$PROJECT_DIR$/groupcraft/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupcraft/views.py" afterPath="$PROJECT_DIR$/groupcraft/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/basic/zurb.css" afterPath="$PROJECT_DIR$/static/css/basic/zurb.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/base.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/group.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/new_search.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/new_search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/GroupCraft/user.html" afterPath="$PROJECT_DIR$/templates/GroupCraft/user.html" />
     </list>
     <ignored path="GroupCraft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,66 +32,46 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/groupcraft/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="45" selection-start="2431" selection-end="2431" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="388" column="0" selection-start="11654" selection-end="11654" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manager.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Python27/Lib/site-packages/django/db/models/manager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="0" selection-start="8042" selection-end="8042" vertical-scroll-proportion="0.0">
+            <state line="99" column="40" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/post.html">
+      <file leaf-file-name="zurb.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/basic/zurb.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="30" selection-start="352" selection-end="355" vertical-scroll-proportion="-5.8846154">
+            <state line="1274" column="6" selection-start="105299" selection-end="105299" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
+      <file leaf-file-name="user.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="87" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.8202847">
+            <state line="32" column="78" selection-start="914" selection-end="914" vertical-scroll-proportion="-3.9230769">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/GroupCraft/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="9" selection-start="5503" selection-end="5503" vertical-scroll-proportion="-15.730769">
+            <state line="67" column="6" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.2150376">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_index.html">
+      <file leaf-file-name="browse.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/browse.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="47" selection-start="929" selection-end="929" vertical-scroll-proportion="-17.653847">
+            <state line="3" column="31" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -105,7 +89,16 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/groupcraft/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="57" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
+            <state line="18" column="62" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="225" selection-start="2125" selection-end="2125" vertical-scroll-proportion="-8.961538">
               <folding />
             </state>
           </provider>
@@ -126,22 +119,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/GroupCraft/new_search.html" />
-        <option value="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
-        <option value="$PROJECT_DIR$/static/css/basic/zurb.css" />
-        <option value="$PROJECT_DIR$/static/js/jquery.js" />
-        <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/groupcraft/models.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/urls.py" />
-        <option value="$PROJECT_DIR$/templates/GroupCraft/user.html" />
         <option value="$PROJECT_DIR$/static/js/zurb.js" />
-        <option value="$PROJECT_DIR$/groupcraft/views.py" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/post.html" />
-        <option value="$PROJECT_DIR$/groupcraft/urls.py" />
-        <option value="$PROJECT_DIR$/templates/GroupCraft/base.html" />
         <option value="127.0.0.1:8000/groupcraft/group/groupcraft" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/new_search.html" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/search.html" />
+        <option value="$PROJECT_DIR$/static/css/basic/zurb.css" />
+        <option value="$PROJECT_DIR$/groupcraft/urls.py" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/new_index.html" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/browse.html" />
+        <option value="$PROJECT_DIR$/groupcraft/views.py" />
         <option value="$PROJECT_DIR$/templates/GroupCraft/group.html" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/user.html" />
+        <option value="$PROJECT_DIR$/templates/GroupCraft/base.html" />
       </list>
     </option>
   </component>
@@ -221,6 +214,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroupCraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroupCraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="basic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroupCraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GroupCraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -252,14 +281,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="267" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="296" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="289" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="H:/Git/cmd/git.exe" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="297" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="971" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="964" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="971" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="290" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="288" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -270,7 +299,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="project.propVCSSupport.VCSs.Git" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -293,7 +322,7 @@
       <recent name="H:\GroupCraft\static\css\basic" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.group.html">
+  <component name="RunManager" selected="Django server.GroupCraft">
     <configuration default="false" name="group.html" type="JavascriptDebugSession" factoryName="Local" temporary="true">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
@@ -334,25 +363,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="GroupCraft" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -372,6 +382,25 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="GroupCraft" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -442,9 +471,9 @@
       <method />
     </configuration>
     <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Django server.GroupCraft" />
-      <item index="1" class="java.lang.String" itemvalue="Python.manage" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.group.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.group.html" />
+      <item index="1" class="java.lang.String" itemvalue="Django server.GroupCraft" />
+      <item index="2" class="java.lang.String" itemvalue="Python.manage" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -529,7 +558,11 @@
       <created>1362584133137</created>
       <updated>1362584133138</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="AJAX posting works">
+      <created>1362591794055</created>
+      <updated>1362591794055</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -556,13 +589,12 @@
     <frame x="0" y="0" width="960" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30066815" sideWeight="0.7258427" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27415732" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28619152" sideWeight="0.84157306" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15842697" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22696629" sideWeight="0.4988864" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22696629" sideWeight="0.4933185" order="2" side_tool="false" content_ui="tabs" />
@@ -571,6 +603,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921347" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -611,7 +644,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed user profile picture upload and display.  Fixed javascript gap problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="AJAX posting works" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -637,70 +670,68 @@
     <MESSAGE value="bunch of html updates and css style changes" />
     <MESSAGE value="removed a &lt;br&gt; from about.html" />
     <MESSAGE value="fixed user profile picture upload and display.  Fixed javascript gap problem" />
+    <MESSAGE value="AJAX posting works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="52" />
+      <option name="time" value="63" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/site-packages/django/forms/forms.py">
+    <entry file="file://C:/Python27/Lib/site-packages/django/db/models/manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="4688" selection-end="4688" vertical-scroll-proportion="0.3328336">
+        <state line="219" column="0" selection-start="8042" selection-end="8042" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="352" selection-end="355" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="http://127.0.0.1:8000/groupcraft/group/groupcraft">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="0" selection-start="4677" selection-end="4677" vertical-scroll-proportion="0.3328336">
+        <state line="107" column="0" selection-start="4614" selection-end="4614" vertical-scroll-proportion="0.24617997" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="43" selection-start="1550" selection-end="1550" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/django/contrib/auth/decorators.py">
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="748" selection-end="748" vertical-scroll-proportion="0.3328336">
+        <state line="17" column="19" selection-start="488" selection-end="492" vertical-scroll-proportion="0.5133215">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_index.html">
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/tag.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="47" selection-start="929" selection-end="929" vertical-scroll-proportion="-17.653847">
+        <state line="27" column="14" selection-start="0" selection-end="673" vertical-scroll-proportion="0.7487765">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/user.html">
+    <entry file="file://$PROJECT_DIR$/static/css/basic/zurb.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="84" selection-start="215" selection-end="215" vertical-scroll-proportion="-3.9230769">
+        <state line="1274" column="6" selection-start="105299" selection-end="105299" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/zurb.js">
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/browse.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="40614" selection-end="40614" vertical-scroll-proportion="0.46282527">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groupcraft/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="45" selection-start="2431" selection-end="2431" vertical-scroll-proportion="0.0">
+        <state line="3" column="31" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="47" selection-start="530" selection-end="530" vertical-scroll-proportion="0.4047619">
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -711,51 +742,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="40" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/new_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="43" selection-start="1778" selection-end="1778" vertical-scroll-proportion="-15.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/groupcraft/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="57" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
+        <state line="18" column="62" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="225" selection-start="2125" selection-end="2125" vertical-scroll-proportion="-8.961538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="78" selection-start="914" selection-end="914" vertical-scroll-proportion="-3.9230769">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/GroupCraft/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="9" selection-start="5503" selection-end="5503" vertical-scroll-proportion="-15.730769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/django/db/models/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="0" selection-start="8042" selection-end="8042" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="352" selection-end="355" vertical-scroll-proportion="-5.8846154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="http://127.0.0.1:8000/groupcraft/group/groupcraft">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/groupcraft/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="388" column="0" selection-start="11654" selection-end="11654" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupCraft/group.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="87" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.8202847">
+        <state line="67" column="6" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.2150376">
           <folding />
         </state>
       </provider>

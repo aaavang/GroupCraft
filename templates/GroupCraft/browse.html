@@ -1,0 +1,27 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<TITLE>Browse Groups</TITLE>
+	<h1 class="head">Browse All Groups</h1>
+
+
+	<div class="row">
+		<div class="eight mobile-two hide-for-small columns backborder centered">
+
+			<div>
+				<br>
+				{% if groups %}
+					{% for g in groups %}
+						<div class="panel">
+							<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a></h5>
+
+							<h6 class="subheader">{{ g.description }}</h6>
+
+						</div>
+					{% endfor %}
+				{% else %}
+					<h6 class="head">No Groups Yet!</h6>
+				{% endif %}
+			</div>
+
+		</div>
+{% endblock %}

@@ -9,7 +9,9 @@ from GroupCraft.settings import MEDIA_ROOT
 
 from groupcraft.models import *
 
+import unicodedata
 import os
+import re
 
 # helper function to determine membership size
 def member_count(group):
@@ -74,34 +76,43 @@ def group(request, group_name_url):
 		for tg in tgs:
 			tags.append(tg.tag)
 
-		mem_names = []
-		admin_names = []
+		members = []
+		admins = []
+
+		isAdmin = False
+		isMember = False
 		for ug in usergroups:
 			if ug.isAdmin:
-				admin_names.append(ug.user.user.username)
+				admins.append(ug.user)
+				if request.user == ug.user.user :
+					isAdmin = True
 			else:
-				mem_names.append(ug.user.user.username)
+				members.append(ug.user)
+				if request.user == ug.user.user :
+					isMember = True
 
 		posts = Post.objects.filter(group=group)
+		posts = sorted(posts, key=lambda p: p.date, reverse=True)
 
-		isMember = request.user.username in mem_names
-		isAdmin = request.user.username in admin_names
+
 		tag_string = ''
 		for tag in tags:
 			tag_string += tag.name + " "
 
 		context_dict = {'name':group.name,
-		                'desc':group.description,
+		                'esc_desc':re.sub(ur'\r\n',ur'\\r\\n',group.description),
+		                'desc':group.description.split(u'\r\n'),
 		                'tag_string':tag_string,
-		                'admins':admin_names,
-		                'members':mem_names,
+		                'admins':admins,
+		                'members':members,
 		                'url':group_name_url,
 		                'valid':True,
 		                'isPrivate':group.isPrivate,
 		                'tags':tags,
 		                'posts':posts,
 		                'isMember':isMember,
-		                'isAdmin':isAdmin}
+		                'isAdmin':isAdmin,
+		                'numAdmins':admins.__len__()}
 	else:
 		context_dict['name'] = decode(group_name_url)
 		context_dict['valid'] = False
@@ -324,6 +335,12 @@ def search(request):
 				for g in groups:
 					if s in g.name.lower() or s in g.description.lower():
 						group_results.append(g)
+					else:
+						tgs = TagGroup.objects.filter(group = g)
+						for tg in tgs:
+							if s == tg.tag.name:
+								group_results.append(g)
+								break
 				for u in users:
 					if s in u.username.lower():
 						user_results.append(u)
@@ -424,9 +441,21 @@ def remove(request,username,group_name_url):
 			# if the users are members of this group...
 			if ug_requester and ug_delete:
 				ug_requester = ug_requester[0]
+				ug_delete = ug_delete[0]
+
+				# if the person requester is removing his/herself...
+				if ug_requester == ug_delete and not ug_requester.isAdmin:
+					ug_delete.delete()
+
+				elif ug_requester == ug_delete and ug_delete.isAdmin:
+					group_ugs = UserGroup.objects.filter(group = g).filter(isAdmin = True)
+
+					# if there are more than 1 admins, you can remove admins
+					if(group_ugs.__len__() > 1):
+						ug_delete.delete()
 
 				# if the requester has the authority to delete a user...
-				if ug_requester.isAdmin:
+				elif ug_requester.isAdmin:
 					# delete the user group associated with the user/group
 					ug_delete.delete()
 				else:
@@ -438,4 +467,12 @@ def remove(request,username,group_name_url):
 
 	# redirect the user to the group page in question
 	return HttpResponseRedirect('/groupcraft/group/' + group_name_url)
+
+def browse(request):
+	context = RequestContext(request)
+	groups = Group.objects.all()
+	groups = sorted(groups, key=lambda g: g.name.lower())
+	context_dict = {'groups':groups}
+
+	return render_to_response('GroupCraft/browse.html',context_dict,context)
 

@@ -62,13 +62,14 @@
 
 							{% for g in groups %}
 								<div class="panel">
-										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a><h5></h5>
+										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a></h5>
 
 										<h6 class="subheader">{{ g.description }}</h6>
 
 								</div>
 							{% endfor %}
-
+							<a href="/groupcraft/browse/">Browse Groups...</a>
+							<br><br>
 					</div>
 
 					<!-- End Shows -->

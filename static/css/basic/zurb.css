@@ -1258,3 +1258,21 @@ textarea
 {
     text-align:center;
 }
+
+.image
+{
+    border: 2px solid black;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -khtml-border-radius: 30px;
+    -webkit-border-radius: 30px;
+}
+
+.no-padding{
+    padding: 0px 0px;
+}
+
+.micro{
+    font-size:11px;
+    padding: 2px 5px;
+}
