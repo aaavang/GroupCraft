@@ -7,6 +7,8 @@ import os, re
 path = os.getcwd();
 path = re.sub(r'\\','/',path)
 
+global CSS
+CSS = 'night'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -129,6 +131,15 @@ TEMPLATE_DIRS = (
 	# Don't forget to use absolute paths, not relative paths.
 	path + '/templates',
 	)
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+                               "django.core.context_processors.debug",
+                               "django.core.context_processors.i18n",
+                               "django.core.context_processors.media",
+                               "django.core.context_processors.static",
+                               "django.core.context_processors.tz",
+                               "django.contrib.messages.context_processors.messages",
+								"groupcraft.css.css_processor")
 
 INSTALLED_APPS = (
 	'django.contrib.auth',

@@ -2,7 +2,9 @@
 <!-- Included JS Files -->
 <script src="{{ STATIC_URL }}js/zurb.js"></script>
 <script src="{{ STATIC_URL }}js/tagcanvas.min.js" type="text/javascript"></script>
-<LINK href="{{ STATIC_URL}}css/basic/zurb.css" rel="stylesheet" title="basicstyle" type="text/css" />
+
+<LINK href="{{ STATIC_URL}}css/basic/{{ CSS }}.css" rel="stylesheet" title="basicstyle" type="text/css" />
+
 <link rel="icon"
       type="image/png"
       href="{{ STATIC_URL }}imgs/favicon.ico" />
@@ -46,6 +48,10 @@
 					       onblur="handleBlur(event,this)" />
 				</form>
 
+			</li>
+
+			<li class="has-button">
+				<button id="switch">Night</button>
 			</li>
 			<li class="has-dropdown">
 				{% if user.is_authenticated %}
@@ -164,6 +170,62 @@
 <script type="text/javascript">
 	$(window).load(function() {
 		$('#featured').orbit({ fluid: '2x1' });
+		$('#switch').click(function () {
+			// abort any pending request
+			if (request) {
+				request.abort();
+			}
+
+			// fire off the request to /form.php
+			var request = $.ajax({
+				                     url: "/groupcraft/flip"
+			                     });
+
+
+			// callback handler that will be called on success
+			request.done(function (response, textStatus, jqXHR){
+				if(response.indexOf("True") != -1) {
+					var newCss = document.createElement('link');
+
+					newCss.rel = 'stylesheet';
+					newCss.type = 'text/css';
+					newCss.href = '{{ STATIC_URL }}css/basic/night.css';
+
+					document.body.appendChild(newCss);
+
+					$('#switch').html('Day');
+				} else {
+					var newCss = document.createElement('link');
+
+					newCss.rel = 'stylesheet';
+					newCss.type = 'text/css';
+					newCss.href = '{{ STATIC_URL }}css/basic/zurb.css';
+
+					document.body.appendChild(newCss);
+
+					$('#switch').html('Night');
+				}
+			});
+			// callback handler that will be called on failure
+			request.fail(function (jqXHR, textStatus, errorThrown){
+				// log the error to the console
+				alert(jqXHR.responseText);
+				console.error(
+						"The following error occured: "+
+								textStatus, errorThrown
+				);
+			});
+
+			// callback handler that will be called regardless
+			// if the request failed or succeeded
+			request.always(function () {
+			});
+
+			request.send
+
+			// prevent default posting of form
+			event.preventDefault();
+		});
 
 		try {
 			TagCanvas.Start('myCanvas','tags', {

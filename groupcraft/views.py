@@ -9,9 +9,19 @@ from GroupCraft.settings import MEDIA_ROOT
 
 from groupcraft.models import *
 
+import os
+
 import unicodedata
 import os
 import re
+
+def getCSS():
+	CSS = os.environ['CSS']
+	try:
+		return CSS
+	except NameError:
+		CSS = 'zurb'
+		return CSS
 
 # helper function to determine membership size
 def member_count(group):
@@ -237,9 +247,9 @@ def join_group(request, group_name_url):
 			ug = UserGroup(user = profile,group = group)
 			ug.save()
 
-		return HttpResponseRedirect('/groupcraft/group/'+ group_name_url)
+		return HttpResponseRedirect(request.environ['HTTP_REFERER'])
 	else:
-		return HttpResponseRedirect('/groupcraft/'+ group_name_url)
+		return HttpResponseRedirect(request.environ['HTTP_REFERER'])
 
 def save_file(file, path=''):
 	filename = file._get_name()
@@ -372,6 +382,7 @@ def tag(request,tag_name):
 	else:
 		context_dict['name'] = decode(tag_name)
 
+
 	return render_to_response('GroupCraft/tag.html',context_dict,context)
 
 # this view is called to add a post to a group
@@ -476,3 +487,18 @@ def browse(request):
 
 	return render_to_response('GroupCraft/browse.html',context_dict,context)
 
+
+os.environ['CSS'] = 'zurb'
+
+def flip(request):
+	CSS = os.environ['CSS']
+	try:
+		if CSS == 'zurb':
+			os.environ['CSS'] = 'night'
+			return HttpResponse(True)
+		else:
+			os.environ['CSS'] = 'zurb'
+			return HttpResponse(False)
+	except NameError:
+		os.environ['CSS'] = 'night'
+		return HttpResponse(True)
