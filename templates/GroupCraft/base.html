@@ -192,6 +192,18 @@
 					newCss.href = '{{ STATIC_URL }}css/basic/night.css';
 
 					document.body.appendChild(newCss);
+					TagCanvas.Start('myCanvas','tags', {
+						textFont: 'Algerian,"Arial Black",sans-serif',
+						textColour: '#FFFFFF',
+						textHeight: 25,
+						weight: true,
+						weightSizeMin: 12,
+						weightSizeMax: 50,
+						decel: 1,
+						initial:[.15, .1],
+						freezeActive:true
+						/* more options */
+					});
 
 					$('#switch').html('Day');
 				} else {
@@ -202,6 +214,18 @@
 					newCss.href = '{{ STATIC_URL }}css/basic/zurb.css';
 
 					document.body.appendChild(newCss);
+					TagCanvas.Start('myCanvas','tags', {
+						textFont: 'Algerian,"Arial Black",sans-serif',
+						textColour: '#000000',
+						textHeight: 25,
+						weight: true,
+						weightSizeMin: 12,
+						weightSizeMax: 50,
+						decel: 1,
+						initial:[.15, .1],
+						freezeActive:true
+						/* more options */
+					});
 
 					$('#switch').html('Night');
 				}
@@ -230,7 +254,11 @@
 		try {
 			TagCanvas.Start('myCanvas','tags', {
 				textFont: 'Algerian,"Arial Black",sans-serif',
+			{% if NIGHT %}
+				textColour: '#FFFFFF',
+			{% else %}
 				textColour: '#000000',
+			{% endif %}
 				textHeight: 25,
 				weight: true,
 				weightSizeMin: 12,
