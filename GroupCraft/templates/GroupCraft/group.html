@@ -1,0 +1,267 @@
+{% extends 'GroupCraft/base.html' %}
+{% block content %}
+	<title>{{ name }}</title>
+	{% if valid %}
+		<div class="row">
+			<div class="head" class="twelve columns">
+				<h1>{{ name }}</h1>
+				{% if isAdmin %}
+					<div class="head">
+						<script type="text/javascript">
+							function initializeModal() {
+								document.getElementById('id_name_m').value = '{{ name }}';
+								document.getElementById('id_description_m').value = "{{ esc_desc }}";
+								document.getElementById('id_tags_m').value = "{{ tag_string }}";
+							}
+						</script>
+						<a class="small secondary round button" data-reveal-id="editGroupModal" onclick="initializeModal();">Edit Group...</a>
+					</div>
+				{% endif %}
+			</div>
+
+
+			<hr>
+			<div class="row">
+				<div class="twelve columns">
+					<div class="row">
+
+						<div class="two columns">
+							<dl class="vertical tabs">
+								<dd class="active"><a href="#about">Group Details</a></dd>
+								<dd><a href="#members">Members</a></dd>
+								<dd><a href="#posts">Posts</a></dd>
+							</dl>
+						</div>
+						<ul class="tabs-content">
+
+							<li class="active" id="aboutTab">
+								<!-- Group Details -->
+
+								<div class="eight columns backborder">
+									<h4 class="head">Group Description</h4><hr/>
+									<p class="panel">
+										{% for line in desc %}
+											{{ line }} <br>
+										{% endfor %}
+									</p>
+								</div>
+								<!-- End Group -->
+
+							</li>
+							<li id="membersTab">
+
+								<!-- Group Members -->
+
+								<div class="eight columns backborder">
+
+									<h4 class="head">Group Members</h4><hr/>
+
+									{% if not isPrivate or isAdmin or isMember%}
+										<div class="hide-for-small">
+											<h6>Admins: </h6>
+											<div class="panel">
+												{% if admins %}
+													<ul class="inline-list">
+														{% for admin in admins %}
+															<li>
+																<div class="head">
+																	{% if admin.picture %}
+																		<a href="/groupcraft/user/{{ admin.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}{{admin.picture}}" width="50" height="50"/></a>
+																	{% else %}
+																		<a href="/groupcraft/user/{{ admin.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}missing_user.png" width="50" height="50"/></a>
+																	{% endif %}
+																	<br>
+																	<a href="/groupcraft/user/{{ admin.user.username }}">{{ admin.user.username }}</a>
+																</div>
+															</li>
+														{% endfor %}
+													</ul>
+												{% endif %}
+											</div>
+											<hr>
+											<h6>Members: </h6>
+											<div class="panel">
+												{% if members %}
+													<ul class="inline-list">
+														{% for member in members %}
+															<li>
+																<div class="head">
+																	{% if member.picture %}
+																		<a href="/groupcraft/user/{{ member.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}{{member.picture}}" width="50" height="50"/></a>
+																	{% else %}
+																		<a href="/groupcraft/user/{{ member.user.username }}" target="_blank"><img class="image" src="{{MEDIA_URL}}imgs/missing_user.png" width="50" height="50"/></a>
+																	{% endif %}
+																	<br>
+																	<a href="/groupcraft/user/{{ member.user.username }}">{{ member.user.username }}</a>
+																</div>
+															</li>
+														{% endfor %}
+													</ul>
+												{% else %}
+													No Members Yet!<br>
+												{% endif %}
+											</div>
+											<hr>
+											{% if not isAdmin and not isMember %}
+												<a class="small round button" href="/groupcraft/join_group/{{ url }}">Join This Group!</a><br>
+											{% elif isMember or isAdmin and numAdmins > 1 %}
+												<a class="small round button" href="/groupcraft/remove/{{ user.username }}/{{ url }}">Leave This Group!</a><br>
+											{% endif %}
+										</div>
+									{% else %}
+										<p class="head"><i>Hidden</i></p>
+									{% endif %}
+								</div>
+							</li>
+
+							<!-- End Members -->
+
+							<!-- Posts -->
+							<li id="postsTab">
+								<div class="ten columns">
+									<div class="twelve columns backborder">
+
+										<h4 class="head">Posts</h4><hr/>
+										{% if isMember or isAdmin %}
+											<form method="POST" id="post">
+												<fieldset>
+													<legend>Post to this Group</legend>
+													{% csrf_token %}
+													<label>Title:</label>
+													<input type="text" id="title" name="title">
+													<label>Text:</label>
+													<textarea name="textarea" id="textarea" ></textarea>
+													<input type="submit" value="Post">
+												</fieldset>
+											</form>
+										{% endif %}
+										{% if not isPrivate or isAdmin or isMember%}
+											<div id="posts">
+												{% if posts %}
+													{% for p in posts %}
+														<div class="panel">
+															<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
+
+															<h6 class="subheader">
+																At {{ p.date }}<br>
+																{% if p.replyTo %}
+																	<b>In response to: {{ p.replyTo.title }} </b> <br>
+																{% endif %}
+																From <a href="/groupcraft/user/{{ p.author }}">{{ p.author }}</a> <br>
+																{% for line in p.get_snippet.splitlines %}
+																	{{ line }}
+																{% endfor %}
+															</h6>
+														</div>
+													{% endfor %}
+												{% else %}
+													<p class="head"><i>No Posts Yet!</i></p>
+												{% endif %}
+											</div>
+										{% else %}
+											<p class="head"><i>Hidden</i></p>
+										{% endif %}
+
+
+									</div>
+								</div>
+							</li>
+
+							<!-- End Posts -->
+						</ul>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- End Content -->
+
+		</div>
+	{% else %}
+		<H1 class="head">Group "{{name}}" Does Not Exist!</H1>
+		<hr>
+		<script type="text/javascript">
+			function initializeName(){
+				document.getElementById('id_name').value = '{{ name }}';
+			}
+		</script>
+		<div class="head">
+			<a class="small round button head" data-reveal-id="createGroupModal" onclick="initializeName()">Create this Group!</a>
+		</div>
+	{% endif %}
+	<div id="editGroupModal" class="reveal-modal medium">
+		<FORM id="group_form" method="post" action="/groupcraft/edit_group/">
+			{% csrf_token %}
+
+			<fieldset>
+				<legend>Group Details</legend>
+				<label>Group Title</label>
+				<input id="id_name_m" type="text" name="name" maxlength="128" />
+				<label>Group Description</label>
+				<textarea id="id_description_m" rows="10" cols="40" name="description"></textarea>
+				<label>Tags (seperated by spaces)</label>
+				<input id="id_tags_m" type="text" name="tags" maxlength="50" />
+				<input id="old_name_m" type="hidden" name="old_name" value="{{ name }}" />
+
+				<INPUT type="submit" name="submit" value="Update" />
+			</fieldset>
+		</FORM>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	<script>
+		$(document).ready(function(){
+			$("#post").submit(function(event){
+				// abort any pending request
+				if (request) {
+					request.abort();
+				}
+				// setup some local variables
+				var $form = $(this);
+				// let's select and cache all the fields
+				var $inputs = $form.find("input, select, button, textarea");
+				// serialize the data in the form
+				var serializedData = $form.serialize();
+
+				// let's disable the inputs for the duration of the ajax request
+				$inputs.prop("disabled", true);
+
+				// fire off the request to /form.php
+				var request = $.ajax({
+					                     url: "/groupcraft/post/{{ url }}",
+					                     type: "post",
+					                     data: serializedData
+				                     });
+
+				// callback handler that will be called on success
+				request.done(function (response, textStatus, jqXHR){
+					if($("#posts").html().indexOf("No Posts Yet!") !== -1) {
+						$("#posts").html(response);
+					} else {
+						$("#posts").prepend(response);
+					}
+				});
+
+				// callback handler that will be called on failure
+				request.fail(function (jqXHR, textStatus, errorThrown){
+					// log the error to the console
+					console.error(
+							"The following error occured: "+
+									textStatus, errorThrown
+					);
+				});
+
+				// callback handler that will be called regardless
+				// if the request failed or succeeded
+				request.always(function () {
+					// reenable the inputs
+					$inputs.prop("disabled", false);
+					// reset the form
+					$("#post")[0].reset();
+				});
+
+				// prevent default posting of form
+				event.preventDefault();
+			});
+		});
+	</script>
+{% endblock %}

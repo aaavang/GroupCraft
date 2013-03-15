@@ -1,0 +1,12 @@
+<div class="panel">
+	<h5><a href="/groupcraft/group/{{ post.group.get_url }}">{{ post.title }}</a></h5>
+
+	<h6 class="subheader">
+		At {{ post.date }}<br>
+		{% if post.replyTo %}
+			<b>In response to: {{ post.replyTo.title }} </b> <br>
+		{% endif %}
+		From <a href="/groupcraft/user/{{ post.author }}">{{ post.author }}</a> <br>
+		{{ post.get_snippet }}...
+	</h6>
+</div>

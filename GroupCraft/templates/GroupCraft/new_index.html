@@ -1,0 +1,112 @@
+{% extends 'GroupCraft/base.html' %}
+
+<!-- End Navigation -->
+
+{% block content %}
+	<title>GroupCraft</title>
+<div class="row">
+	<div class="twelve columns">
+
+		<!-- Content Slider -->
+
+		<div class="row">
+			<div class="twelve columns ">
+
+				<div id="featured">
+					{% for file in featured %}
+						<img class="backborder" src="{{ STATIC_URL }}imgs/featured/{{ file }}" alt="slide image">
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+
+		<!-- End Content Slider -->
+
+		<!-- Mobile Header -->
+
+
+		<br>
+
+		<!-- End Mobile Header -->
+
+
+		<div class="row">
+			<div class="twelve columns">
+				<div class="row">
+
+					<!-- Image mid-column -->
+
+					<div class="four hide-for-small columns backborder">
+						<h4 class="head">Trending Tags</h4><hr/>
+						<div id="myCanvasContainer">
+							<canvas width="300" height="300" id="myCanvas">
+							</canvas>
+						</div>
+
+						<div id="tags">
+							<ul>
+								{%  for t in tags %}
+									<li><a style="font-size: {{ t.count }}pt" href="/groupcraft/tag/{{ t.get_encoded }}">{{ t.get_decoded }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<!-- End Image -->
+
+					<!-- Shows -->
+
+					<div class="four columns backborder" >
+
+						<h4 class="head">Largest Groups</h4><hr/>
+
+							{% for g in groups %}
+								<div class="panel">
+										<h5><a href="/groupcraft/group/{{ g.get_url }}">{{ g.name }}</a></h5>
+
+										<h6 class="subheader">{{ g.description }}</h6>
+
+								</div>
+							{% endfor %}
+							<a href="/groupcraft/browse/">Browse Groups...</a>
+							<br><br>
+					</div>
+
+					<!-- End Shows -->
+
+
+					<!-- Feed -->
+
+					<div class="four mobile-four columns backborder">
+
+						<h4 class="head">GroupCraft News</h4><hr/>
+						{% for p in posts %}
+						<div class="panel">
+							<h5><a href="/groupcraft/group/{{ p.group.get_url }}">{{ p.title }}</a></h5>
+
+							<h6 class="subheader">
+								{% if p.replyTo %}
+									<b>In response to: {{ p.replyTo.title }} </b> <br>
+								{% endif %}
+								From <a href="/groupcraft/user/{{ p.author }}">{{ p.author }}</a> <br>
+								At {{ p.date }}<br>
+								{{ p.get_snippet }}...
+							</h6>
+						</div>
+						{% endfor %}
+
+						<a href="/groupcraft/group/GroupCraft" class="right">Go To GroupCraft Group »</a>
+						<br><br>
+					</div>
+
+					<!-- End Feed -->
+
+				</div>
+			</div>
+		</div>
+
+		<!-- End Content -->
+
+	</div>
+</div>
+{% endblock %}
